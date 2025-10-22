@@ -2,10 +2,10 @@
    VARIABLES DE COLORES GLOBALES
    ======================================================================== */
 :root {
-    --primary-blue: #1C3FA7; /* Un azul más oscuro y profundo */
-    --accent-blue: #2A60E3; /* Azul brillante, similar a los tonos de la imagen */
-    --accent-yellow: #FFD700; /* Dorado para destacar elementos */
-    --light-bg-blue: #edf5ff; /* Un azul muy claro para fondos */
+    --primary-blue: #1C3FA7; 
+    --accent-blue: #2A60E3; 
+    --accent-yellow: #FFD700; 
+    --light-bg-blue: #edf5ff; 
 }
 
 /* ========================================================================
@@ -24,152 +24,42 @@
 }
 
 .hover\:bg-accent-blue\/10:hover {
-    background-color: rgba(42, 96, 227, 0.1); /* 10% opacidad de var(--accent-blue) */
+    background-color: rgba(42, 96, 227, 0.1); 
 }
 
 .bg-accent-blue\/5 {
-    background-color: rgba(42, 96, 227, 0.05); /* 5% opacidad de var(--accent-blue) */
+    background-color: rgba(42, 96, 227, 0.05); 
 }
 
 .border-accent-blue\/50 {
-    border-color: rgba(42, 96, 227, 0.5); /* 50% opacidad de var(--accent-blue) */
-}
-
-.accent-yellow {
-    color: var(--accent-yellow);
+    border-color: rgba(42, 96, 227, 0.5); 
 }
 
 .bg-accent-yellow {
     background-color: var(--accent-yellow);
 }
 
-.hover\:bg-yellow-500:hover { /* Un poco más oscuro que el dorado */
-    background-color: #e6c200; 
-}
-
-
-/* ========================================================================
-   ESTILOS GENERALES Y LAYOUT
-   ======================================================================== */
-body {
-    font-family: 'Inter', sans-serif; /* Usando Inter como una buena fuente moderna */
-    color: #374151; /* Color de texto base más oscuro */
-    line-height: 1.6;
-}
-
-h1, h2, h3, h4, h5, h6 {
-    font-family: 'Montserrat', sans-serif; /* Montserrat para encabezados */
-}
-
-/* Scroll-behavior para desplazamiento suave al hacer clic en enlaces de anclaje */
-html {
-    scroll-behavior: smooth;
-}
-
-/* ========================================================================
-   NAVEGACIÓN
-   ======================================================================== */
-.nav-link {
-    color: #4b5563; /* Gris más oscuro para enlaces */
-    transition: color 0.3s ease, background-color 0.3s ease;
-    position: relative;
-    padding-bottom: 0.25rem; /* Espacio para el subrayado */
-}
-
-.nav-link:hover, .nav-link.active {
+/* Estilo para el enlace activo en la navegación */
+.active-link.active {
     color: var(--accent-blue);
-    background-color: rgba(42, 96, 227, 0.05); /* Fondo sutil al hover/activo */
-}
-
-.nav-link.active::after {
-    content: '';
-    position: absolute;
-    left: 10%; /* Ajuste para que la línea no sea tan ancha */
-    right: 10%;
-    bottom: 0;
-    height: 2px;
-    background-color: var(--accent-blue);
-    border-radius: 1px;
-    transform: scaleX(1);
-    transition: transform 0.3s ease;
-}
-
-.nav-link:not(.active)::after {
-    transform: scaleX(0);
-}
-
-/* Logo */
-.logo-container img {
-    height: 40px; /* Altura fija para el logo */
-    width: auto;
-    object-fit: contain;
+    font-weight: 700; /* font-bold */
+    border-bottom: 2px solid var(--accent-blue);
+    padding-bottom: 6px;
 }
 
 /* ========================================================================
-   SECCIÓN DE INICIO (HEADER CON IMAGEN DE FONDO)
+   CARRUSEL DE LIDERAZGO
    ======================================================================== */
-#inicio {
-    /* La imagen de fondo se maneja directamente en el HTML con `style="background-image: url('generaciones.jpg');"` */
-    /* El degradado y la opacidad también se manejan en el HTML */
-    position: relative;
-    background-color: #1a2c5a; /* Color de fondo de respaldo si la imagen no carga */
-}
-
-/* Sombra para el texto sobre el fondo de la imagen */
-.text-shadow-lg {
-    text-shadow: 2px 2px 6px rgba(0, 0, 0, 0.7);
-}
-
-.text-shadow-md {
-    text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.6);
-}
-
-/* ========================================================================
-   TÍTULOS DE SECCIÓN
-   ======================================================================== */
-.section-title {
-    position: relative;
-    display: inline-block; /* Para que el before/after se ajuste al texto */
-    padding-bottom: 0.5rem;
-    color: #212121; /* Un gris muy oscuro para los títulos principales */
-}
-
-.section-title::after {
-    content: '';
-    position: absolute;
-    left: 50%;
-    transform: translateX(-50%);
-    bottom: 0;
-    width: 60px; /* Ancho de la línea */
-    height: 4px; /* Grosor de la línea */
-    background-color: var(--accent-blue);
-    border-radius: 2px;
-}
-
-/* ========================================================================
-   CARRUSEL (SECCIÓN LIDERAZGO)
-   ======================================================================== */
-.carousel-container {
-    position: relative;
-    overflow: hidden;
-    border-radius: 1rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
-    background-color: white;
-}
-
-.carousel-track {
-    display: flex;
-    transition: transform 0.5s ease-in-out;
+.main-photo-style {
+    width: 150px;
+    height: 150px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 5px solid var(--accent-yellow);
 }
 
 .carousel-slide {
     min-width: 100%;
-    box-sizing: border-box;
-    display: flex; /* Asegura que el contenido se centre */
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start; /* Alinea arriba para el texto debajo */
-    text-align: center;
 }
 
 .carousel-button {
@@ -179,114 +69,55 @@ html {
     background-color: rgba(0, 0, 0, 0.5);
     color: white;
     border: none;
-    padding: 0.75rem 0.5rem;
+    padding: 10px;
     cursor: pointer;
     z-index: 10;
-    font-size: 1.5rem;
-    border-radius: 0.5rem;
-    transition: background-color 0.3s ease;
+    border-radius: 50%;
+    transition: background-color 0.3s;
 }
 
 .carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.7);
+    background-color: rgba(0, 0, 0, 0.8);
 }
 
-.carousel-button.left-4 {
-    left: 1rem;
+.carousel-dot {
+    display: inline-block;
+    width: 10px;
+    height: 10px;
+    margin: 0 4px;
+    background-color: rgba(0, 0, 0, 0.3);
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.3s;
 }
 
-.carousel-button.right-4 {
-    right: 1rem;
+.carousel-dot.active {
+    background-color: var(--accent-blue);
+    transform: scale(1.2);
 }
-
-.main-photo-style {
-    max-width: 100%;
-    height: auto;
-    max-height: 450px; /* Limita la altura para evitar que ocupe demasiado espacio */
-    object-fit: cover;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.photo-container {
-    width: 100%;
-    max-width: 400px; /* Tamaño máximo para fotos en secciones */
-    height: 300px; /* Altura fija para consistencia */
-    overflow: hidden;
-    border-radius: 0.75rem;
-    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
-}
-
-.photo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.event-photo-container {
-    width: 100%;
-    height: 200px; /* Altura fija para miniaturas de eventos */
-    overflow: hidden;
-    border-radius: 0.5rem;
-    margin-bottom: 1rem;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
-}
-
-.event-photo-container img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
 
 /* ========================================================================
-   VIDEOS
+   COMPONENTES GLOBALES
    ======================================================================== */
-.youtube-iframe-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Relación de aspecto 16:9 */
-    height: 0;
-    overflow: hidden;
-    background-color: #000;
-    border-radius: 1rem;
-    box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1), 0 4px 6px -2px rgba(0, 0, 0, 0.05);
+
+/* Estilo de la animación de "shake" para el error de contraseña */
+@keyframes shake {
+    0%, 100% {transform: translateX(0);}
+    20%, 60% {transform: translateX(-5px);}
+    40%, 80% {transform: translateX(5px);}
 }
 
-.youtube-iframe-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: 0;
+.animate-shake {
+    animation: shake 0.5s ease-in-out;
 }
 
-#current-video-title {
-    position: absolute;
-    bottom: 0;
-    left: 0;
-    right: 0;
-    background-color: rgba(42, 96, 227, 0.9); /* Usando var(--accent-blue) con opacidad */
-    color: white;
-    text-align: center;
-    padding: 0.5rem 0;
-    font-size: 0.875rem;
-    font-weight: 500;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-    border-bottom-left-radius: 1rem; /* Adapta al radio del contenedor */
-    border-bottom-right-radius: 1rem;
-}
-
-/* Estilos para el ícono de reproducción en las miniaturas de video */
+/* Estilo del icono de "Play" en la miniatura de video */
 .video-thumbnail-play-icon {
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    width: 40px; /* Tamaño del icono */
+    width: 40px; 
     height: 40px;
     background-color: rgba(0, 0, 0, 0.6);
     border-radius: 50%;
@@ -296,7 +127,8 @@ html {
     color: white;
     font-size: 1.5rem;
     border: 2px solid white;
-    pointer-events: none; /* Asegura que el clic pase al div padre */
+    pointer-events: none; 
+    transition: transform 0.2s, background-color 0.2s;
 }
 
 /* ========================================================================
@@ -312,27 +144,105 @@ html {
 }
 
 /* ========================================================================
-   UTILIDADES (PERSONALIZADO)
+   VIDEOS (Corregido el scroll)
    ======================================================================== */
-/* Para asegurar que los elementos flex-shrink-0 no se hagan más pequeños de lo necesario */
-.flex-shrink-0 {
-    flex-shrink: 0;
+
+#video-list-scroll-wrapper {
+    /* Altura máxima para mostrar aproximadamente 4 o 5 videos completos */
+    max-height: 400px; 
+    overflow-y: auto; 
+    padding-right: 0.5rem; /* Pequeño padding para que la barra de scroll no se pegue al borde */
 }
 
-/* Asegurarse de que el main tome todo el espacio disponible */
-body {
-    display: flex;
-    flex-direction: column;
+/* Estilo para navegadores basados en Webkit (Chrome, Safari) */
+#video-list-scroll-wrapper::-webkit-scrollbar {
+    width: 8px;
 }
 
-main {
-    flex-grow: 1;
+#video-list-scroll-wrapper::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 10px;
 }
 
-/* Estilos para el pie de página */
-footer {
-    text-align: center;
-    padding: 2rem 0;
-    font-size: 0.875rem; /* text-sm */
-    color: #6b7280; /* gray-500 */
+#video-list-scroll-wrapper::-webkit-scrollbar-thumb {
+    background: #ccc;
+    border-radius: 10px;
+}
+
+#video-list-scroll-wrapper::-webkit-scrollbar-thumb:hover {
+    background: #aaa;
+}
+
+
+.video-list-item {
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    border: 1px solid transparent; 
+}
+
+.video-list-item:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    background-color: rgba(42, 96, 227, 0.08); 
+}
+
+.video-list-item:hover .video-thumbnail-play-icon {
+    transform: translate(-50%, -50%) scale(1.1);
+}
+
+/* Se agregó el ajuste para la relación de aspecto de video de Tailwind CSS */
+.aspect-w-16 {
+    position: relative;
+    padding-bottom: 56.25%; /* 16:9 aspect ratio */
+    height: 0;
+    overflow: hidden;
+}
+
+.aspect-w-16 iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+/* ========================================================================
+   ESTILO DE BOTÓN CON IMAGEN DE FONDO Y OVERLAY
+   ======================================================================== */
+.button-with-image-bg {
+    /* La imagen de fondo para el botón */
+    background-image: url('generaciones.jpg'); /* <<== ASEGÚRATE DE QUE ESTA RUTA ES CORRECTA */
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    /* La transición del overlay se manejará con ::before */
+    position: relative; /* Esencial para el pseudo-elemento ::before */
+    color: white; /* Color del texto por defecto, para que se vea sobre el overlay */
+    text-shadow: 1px 1px 2px rgba(0,0,0,0.6); /* Sombra para mejor legibilidad */
+}
+
+/* Pseudo-elemento para el overlay de color sobre la imagen */
+.button-with-image-bg::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    /* Color de superposición: azul primario con opacidad, para un efecto claro y llamativo */
+    background-color: rgba(var(--primary-blue-rgb), 0.7); /* Azul principal con 70% de opacidad */
+    z-index: 0; /* Asegura que el overlay esté debajo del texto */
+    transition: background-color 0.3s ease; /* Suave transición al pasar el ratón */
+}
+
+/* Efecto hover para el overlay */
+.button-with-image-bg:hover::before {
+    background-color: rgba(var(--primary-blue-rgb), 0.85); /* Se oscurece ligeramente al hacer hover */
+}
+
+/* Ajuste de variables Tailwind si no las tienes en CSS puro */
+/* Esto es solo si no has definido --primary-blue-rgb en otro lugar */
+:root {
+    --primary-blue: #3B82F6; /* Ejemplo de color primario azul */
+    --primary-blue-rgb: 59, 130, 246; /* Versión RGB para el overlay */
+    --accent-yellow: #FACC15; /* Ejemplo de color amarillo */
 }
