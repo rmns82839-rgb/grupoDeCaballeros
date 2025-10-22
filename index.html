@@ -7,8 +7,11 @@
     
     <script src="https://cdn.tailwindcss.com"></script>
     
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900;1,400&display=swap" rel="stylesheet">
+    
     <link href="styles.css" rel="stylesheet">
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
 </head>
 <body class="min-h-screen">
 
@@ -18,330 +21,398 @@
             <p class="text-sm text-gray-600 mb-4">Introduce la clave para acceder:</p>
             <input type="password" id="password-input" class="w-full p-3 border-2 border-gray-300 rounded-lg mb-4 focus:ring-accent-blue focus:border-accent-blue outline-none text-gray-800" placeholder="Clave de acceso">
             <div class="flex justify-end space-x-3">
-                <button onclick="document.getElementById('password-modal').classList.add('hidden')" class="px-4 py-2 text-gray-600 bg-gray-200 rounded-lg hover:bg-gray-300 transition text-sm">Cancelar</button>
-                <button onclick="checkPassword()" class="px-4 py-2 text-white bg-accent-blue rounded-lg hover:bg-blue-700 transition glow-effect text-sm font-semibold">Acceder</button>
+                <button id="close-modal-button" class="px-4 py-2 text-sm font-medium text-gray-600 rounded-full hover:bg-gray-100 transition">Cancelar</button>
+                <button id="access-button" class="px-4 py-2 text-sm font-medium text-white bg-accent-blue rounded-full hover:bg-blue-800 transition">Acceder</button>
             </div>
         </div>
     </div>
     
-    <nav class="sticky top-0 z-50 bg-white shadow-lg border-b border-gray-100">
+    <nav id="navbar" class="bg-white sticky top-0 z-50 shadow-md transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between h-16">
-                <div class="flex items-center">
-                    <a href="#inicio" class="flex-shrink-0 flex items-center">
-                        <div class="logo-container">
-                             <img id="logo-image" 
-                                 src="about:blank" 
-                                 alt="Logo MMM" 
-                                 onerror="this.onerror=null; this.src='https://placehold.co/40x40/1e40af/facc15?text=LOGO';"
-                            />
-                        </div>
-                        <span class="text-xl sm:text-2xl font-black text-gray-800 tracking-wider ml-2 truncate">GRUPO DE CABALLEROS <span class="accent-blue">IGLESIA MMM SUBA RINCÒN</span></span>
-                    </a>
-                </div>
+            <div class="flex justify-between items-center h-16">
+                <a href="#inicio" class="flex items-center flex-shrink-0">
+                    <img class="h-8 w-auto" src="logo.png" alt="Logo Caballeros Suba Rincón">
+                    <span class="text-lg sm:text-2xl font-black text-gray-800 tracking-wider ml-2 truncate">
+                        <span class="hidden md:inline">GRUPO DE CABALLEROS</span> 
+                        <span class="md:hidden text-base">CABALLEROS</span> 
+                        <span class="accent-blue">MMM SUBARINCÒN</span>
+                    </span>
+                </a>
                 
-                <div class="flex items-center">
-                    <div class="flex space-x-1 items-center ml-4">
-                        
-                        <div class="hidden md:flex md:space-x-1 items-center">
-                            <a href="#liderazgo" id="link-liderazgo" class="nav-link px-3 py-2 rounded-full text-sm font-medium">Liderazgo</a>
-                            <a href="#miembros" id="link-miembros" class="nav-link px-3 py-2 rounded-full text-sm font-medium">Miembros</a>
-                            <a href="#eventos" id="link-eventos" class="nav-link px-3 py-2 rounded-full text-sm font-medium">Eventos</a>
-                            <a href="#videos" id="link-videos" class="nav-link px-3 py-2 rounded-full text-sm font-medium">Videos</a>
-                        </div>
-
-                        <button onclick="openPasswordModal()" class="px-3 py-1.5 border border-transparent text-sm font-medium rounded-full text-white bg-accent-blue hover:bg-blue-700 transition duration-200 shadow-md">
-                            Ventas
-                        </button>
+                <div class="hidden md:flex md:space-x-3 lg:space-x-4 items-center">
+                    <a href="#inicio" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="inicio">Inicio</a>
+                    <a href="#liderazgo" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="liderazgo">Liderazgo</a>
+                    <a href="#miembros" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="miembros">Miembros</a>
+                    <a href="#eventos" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="eventos">Eventos</a>
+                    <a href="#articulos" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="articulos">Artículos</a>
+                    <a href="#videos" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="videos">Videos</a>
                     </div>
+
+                <div class="md:hidden">
+                    <button id="open-modal-button-mobile" class="px-3 py-1 text-sm font-medium text-gray-900 bg-accent-yellow rounded-full shadow-md hover:bg-yellow-600 transition duration-300">
+                        Ventas
+                    </button>
                 </div>
             </div>
         </div>
     </nav>
 
     <main>
-        
-        <section id="inicio" class="relative overflow-hidden pt-20 pb-16 sm:pt-24 sm:pb-20 text-center bg-accent-blue/5 border-b-4 border-accent-blue/20 flex items-center justify-center min-h-[400px]">
-            <div class="absolute inset-0 bg-cover bg-center bg-no-repeat opacity-40" style="background-image: url('generaciones.jpg');"></div>
-            <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent opacity-60"></div>
-            <div class="relative max-w-5xl mx-auto px-4 z-10 text-white">
-                <h1 class="text-5xl sm:text-6xl lg:text-7xl font-extrabold tracking-tight mb-4 text-shadow-lg" style="color: gold;">
-                    Generaciones
+        <section id="inicio" class="relative min-h-[50vh] flex items-center justify-center text-white p-6" 
+            style="background-image: url('generaciones.jpg'); background-size: cover; background-position: center;">
+            
+            <div class="absolute inset-0 bg-black bg-opacity-60"></div> 
+            
+            <div class="relative text-center max-w-4xl mx-auto">
+                <img src="logo.png" alt="Logo" class="w-20 sm:w-28 h-auto mx-auto mb-4 opacity-90">
+                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight" 
+                    style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
+                    GRUPO DE CABALLEROS <span class="text-accent-yellow">MMM SUBA RINCÓN</span>
                 </h1>
-                <p class="text-lg sm:text-xl text-shadow-md max-w-3xl mx-auto italic">
-                    "Generación a generación celebrará tus obras, Y anunciará tus poderosos hechos."
+                <p class="text-base sm:text-xl font-medium mb-8 max-w-2xl mx-auto" 
+                    style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);">
+                    Hombres de Fe, Fortaleza y Visión para el Reino de Dios.
                 </p>
-                <p class="text-sm sm:text-md font-semibold text-shadow-md mt-2">
-                    Salmos 145:4
-                </p>
+                <a href="#liderazgo" class="inline-block px-8 py-3 text-lg font-bold rounded-full shadow-2xl transition duration-300 transform hover:scale-105 
+                    bg-accent-yellow text-gray-900 border-2 border-accent-yellow hover:shadow-xl">
+                    Conoce el Liderazgo
+                </a>
+            </div>
+        </section>
+
+        <section id="mision" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="lg:grid lg:grid-cols-3 lg:gap-8 items-center">
+                    <div class="lg:col-span-1 mb-8 lg:mb-0">
+                        <h2 class="text-3xl font-extrabold text-gray-900">Nuestra Misión</h2>
+                    </div>
+                    <div class="lg:col-span-2 space-y-4 text-lg text-gray-700">
+                        <p>Somos un grupo de hombres comprometidos con el servicio a Dios, la iglesia y la comunidad. Nuestra misión es edificar a cada caballero para que sea un líder íntegro en su hogar, trabajo y congregación.</p>
+                        <p class="font-semibold">Buscamos reflejar los valores de fe, fortaleza, unidad y servicio.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="liderazgo" class="py-16 bg-light-bg-blue">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+                <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Guías Espirituales</span>
+                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Nuestro Liderazgo</h2>
                 
-                <div class="mt-8">
-                    <a href="#liderazgo" class="inline-flex items-center justify-center px-6 py-3 border border-transparent text-base font-medium rounded-full shadow-lg text-white bg-blue-800 hover:bg-blue-900 transition duration-200">
-                        Conoce el Liderazgo
+                <div class="relative mt-8">
+                    <div id="carousel-container" class="relative overflow-hidden rounded-2xl shadow-2xl bg-white mx-auto max-w-4xl">
+                        
+                        <div id="carousel-slider" class="flex transition-transform duration-500 ease-in-out">
+                            <div class="carousel-slide flex-shrink-0 w-full p-8 md:flex md:items-center">
+                                <img id="leader-photo-0" src="tesorero.jpg" alt="Foto del Tesorero (Provisional)" class="main-photo-style mx-auto md:ml-0 md:mr-8 mb-4 md:mb-0">
+                                <div class="text-left">
+                                    <h3 id="leader-name-0" class="text-3xl font-bold accent-blue mb-2">Hno. [Nombre Tesorero]</h3>
+                                    <p id="leader-role-0" class="text-xl font-semibold text-gray-800 mb-4">Tesorero del Grupo</p>
+                                    <p id="leader-text-0" class="text-gray-600 italic">"Sirviendo con fidelidad y transparencia para que la obra avance. El servicio a Dios es nuestra mayor recompensa."</p>
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide flex-shrink-0 w-full p-8 md:flex md:items-center">
+                                <img id="leader-photo-1" src="generaciones.jpg" alt="Foto de Liderazgo (Ejemplo)" class="main-photo-style mx-auto md:ml-0 md:mr-8 mb-4 md:mb-0">
+                                <div class="text-left">
+                                    <h3 id="leader-name-1" class="text-3xl font-bold accent-blue mb-2">Pastor [Raúl]</h3>
+                                    <p id="leader-role-1" class="text-xl font-semibold text-gray-800 mb-4">Pastor y Guía Espiritual</p>
+                                    <p id="leader-text-1" class="text-gray-600 italic">"Guiando a los hombres a ser pilares de fe en sus hogares y en la iglesia, edificando una generación fuerte."</p>
+                                </div>
+                            </div>
+                            
+                            <div class="carousel-slide flex-shrink-0 w-full p-8 md:flex md:items-center">
+                                <img id="leader-photo-2" src="fortaleza.jpeg" alt="Foto de Liderazgo (Ejemplo)" class="main-photo-style mx-auto md:ml-0 md:mr-8 mb-4 md:mb-0">
+                                <div class="text-left">
+                                    <h3 id="leader-name-2" class="text-3xl font-bold accent-blue mb-2">Hno. [Nombre Juan]</h3>
+                                    <p id="leader-role-2" class="text-xl font-semibold text-gray-800 mb-4">Coordinador de Evangelismo</p>
+                                    <p id="leader-text-2" class="text-gray-600 italic">"Llevando la palabra de salvación a cada rincón de Suba. Somos llamados a ser pescadores de hombres."</p>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <button id="carousel-prev" class="carousel-button left-4">&#10094;</button>
+                        <button id="carousel-next" class="carousel-button right-4">&#10095;</button>
+                        <div id="carousel-dots" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="miembros" class="pt-16 pb-12 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Comunidad</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Nuestros Valientes Caballeros</h2>
+                    <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">Conoce a los hombres de fe que conforman el Grupo de Caballeros MMM Suba Rincón.</p>
+                </div>
+                
+                <div id="members-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-8">
+                    </div>
+                
+                <div class="text-center mt-10 flex flex-wrap justify-center gap-4">
+                    <button id="show-more-members" class="px-8 py-3 text-lg font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-105 
+                        bg-accent-blue text-white border-2 border-accent-blue hover:shadow-xl">
+                        Mostrar más Caballeros
+                    </button>
+                    <button id="show-less-members" class="px-8 py-3 text-lg font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-105 
+                        bg-gray-400 text-white border-2 border-gray-400 hover:bg-gray-500 hover:shadow-xl hidden">
+                        Ver menos
+                    </button>
+                </div>
+            </div>
+        </section>
+
+        <section id="eventos" class="py-16 bg-light-bg-blue">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Fechas Importantes</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Próximos Eventos</h2>
+                </div>
+
+                <div id="events-container" class="space-y-8">
+                    </div>
+            </div>
+        </section>
+
+        <section id="articulos" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Estudio de la Palabra</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Artículos Destacados</h2>
+                </div>
+                
+                <div id="articulos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                    
+                    <div class="bg-light-bg-blue rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect">
+                        <img src="fortaleza.jpeg" alt="Imagen del Artículo 1" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">La Fortaleza del Hombre Cristiano</h3>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">Un análisis bíblico sobre cómo edificar una vida espiritual sólida, resistiendo las pruebas y manteniendo la fe inquebrantable.</p>
+                            <div class="mt-auto text-center">
+                                <a href="https://www.indubiblia.org/antiguo-testamento-1/genesis-1" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-light-bg-blue rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect">
+                        <img src="generaciones.jpg" alt="Imagen del Artículo 2" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">El Legado de Fe a la Siguiente Generación</h3>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">La importancia de modelar un carácter piadoso para que nuestros hijos y jóvenes sigan el camino del Señor con convicción.</p>
+                            <div class="mt-auto text-center">
+                                <a href="#" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="bg-light-bg-blue rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect">
+                        <img src="jesus_salva.jpg" alt="Imagen del Artículo 3" class="w-full h-48 object-cover">
+                        <div class="p-6 flex-grow flex flex-col">
+                            <h3 class="text-xl font-bold text-gray-900 mb-3">El Llamado al Servicio</h3>
+                            <p class="text-gray-600 text-sm mb-4 flex-grow">Reflexión sobre el mandato de Jesús de servir al prójimo y cómo el hombre de Dios debe ser un siervo en su entorno.</p>
+                            <div class="mt-auto text-center">
+                                <a href="#" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="videos" class="py-16 bg-light-bg-blue">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Multimedia</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Videos y Predicaciones</h2>
+                </div>
+                
+                <div class="lg:grid lg:grid-cols-3 lg:gap-8">
+                    <div class="lg:col-span-2 mb-8 lg:mb-0 bg-white rounded-xl shadow-xl overflow-hidden">
+                        <div class="aspect-w-16 aspect-h-9 w-full"> 
+                            <iframe id="video-iframe" class="w-full h-full" 
+                                src="https://www.youtube.com/embed/QGGU1f0SV9c?rel=0" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                            </iframe>
+                        </div>
+                        <div class="p-4 border-t">
+                            <p id="current-video-title" class="text-lg font-bold text-gray-900">Video Actual: Mensaje Principal del Culto</p>
+                        </div>
+                    </div>
+
+                    <div class="lg:col-span-1">
+                        <div class="bg-white rounded-xl shadow-xl p-4">
+                            <h3 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Más Videos</h3>
+                            
+                            <div id="video-list-scroll-wrapper"> 
+                                <div id="video-list" class="space-y-3">
+
+                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
+                                         data-video-id="qYFq3qN-i3c" 
+                                         data-video-title="Conferencia: La Armadura de Dios">
+                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
+                                            <img src="https://img.youtube.com/vi/qYFq3qN-i3c/mqdefault.jpg" alt="Miniatura de video 2" class="w-full h-full object-cover">
+                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="text-sm font-semibold text-gray-800 truncate">Conferencia: La Armadura de Dios</p>
+                                            <p class="text-xs text-gray-500">Video 2: Clic para ver</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
+                                         data-video-id="MvODk9QMer4" 
+                                         data-video-title="Culto en Vivo - Especial">
+                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
+                                            <img src="https://img.youtube.com/vi/MvODk9QMer4/mqdefault.jpg" alt="Miniatura de Culto en Vivo" class="w-full h-full object-cover">
+                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="text-sm font-semibold text-gray-800 truncate">Culto en Vivo - Especial</p>
+                                            <p class="text-xs text-gray-500">Video 3: Clic para ver</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
+                                         data-video-id="f-t80kK5KAE" 
+                                         data-video-title="Testimonio de Caballero">
+                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
+                                            <img src="https://img.youtube.com/vi/f-t80kK5KAE/mqdefault.jpg" alt="Miniatura de video 4" class="w-full h-full object-cover">
+                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="text-sm font-semibold text-gray-800 truncate">Testimonio de Caballero</p>
+                                            <p class="text-xs text-gray-500">Video 4: Clic para ver</p>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
+                                         data-video-id="eD2871sN-sI" 
+                                         data-video-title="Alabanza y Adoración">
+                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
+                                            <img src="https://img.youtube.com/vi/eD2871sN-sI/mqdefault.jpg" alt="Miniatura de video 5" class="w-full h-full object-cover">
+                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="text-sm font-semibold text-gray-800 truncate">Alabanza y Adoración</p>
+                                            <p class="text-xs text-gray-500">Video 5: Clic para ver</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
+                                         data-video-id="K_M3bJ3nU4Y" 
+                                         data-video-title="Estudio Bíblico: Liderazgo">
+                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
+                                            <img src="https://img.youtube.com/vi/K_M3bJ3nU4Y/mqdefault.jpg" alt="Miniatura de video 6" class="w-full h-full object-cover">
+                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="text-sm font-semibold text-gray-800 truncate">Estudio Bíblico: Liderazgo</p>
+                                            <p class="text-xs text-gray-500">Video 6: Clic para ver</p>
+                                        </div>
+                                    </div>
+
+                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
+                                         data-video-id="qYFq3qN-i3c" 
+                                         data-video-title="Estudio Bíblico: Profecía">
+                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
+                                            <img src="https://img.youtube.com/vi/qYFq3qN-i3c/mqdefault.jpg" alt="Miniatura de video 7" class="w-full h-full object-cover">
+                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
+                                        </div>
+                                        <div class="flex-grow">
+                                            <p class="text-sm font-semibold text-gray-800 truncate">Estudio Bíblico: Profecía</p>
+                                            <p class="text-xs text-gray-500">Video 7: Clic para ver</p>
+                                        </div>
+                                    </div>
+                                    
+                                </div>
+                            </div>
+                        </div>
+                </div>
+            </div>
+        </section>
+
+      <div class="max-w-md mx-auto mt-12 px-4"> 
+    <a href="https://forms.gle/s53rJag1vfQ6rL2A6" target="_blank"
+       class="relative block w-full text-center py-2 px-3 text-lg font-bold rounded-lg overflow-hidden
+              text-white shadow-lg transition duration-300 transform hover:scale-[1.01]
+              border-2 border-transparent hover:border-accent-yellow button-with-image-bg">
+        <span class="relative z-10">Peticiones / Oraciones</span>
+    </a>
+</div>      
+
+    </main>
+
+<section id="foro" class="py-16 bg-white">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="text-center mb-12">
+                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Comunidad Interactiva</span>
+                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Foro de Opiniones</h2>
+                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                        Comparte tus comentarios, opiniones y peticiones generales con la comunidad.
+                    </p>
+                </div>
+
+                <div id="utterances-container" class="mt-8 p-6 bg-light-bg-blue rounded-xl shadow-lg">
+                    
+                    <script src="https://utteranc.es/client.js"
+                        repo="rmns82839-rgb/caballeros-suba-rincon-foro"
+                        issue-term="pathname"
+                        theme="github-light"
+                        crossorigin="anonymous"
+                        async>
+                    </script>
+                    
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+
+    <section id="venta-flotante" class="py-12 bg-white md:py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            <h2 class="text-2xl font-extrabold text-gray-900 mb-4">¡Apoya nuestras Actividades!</h2>
+            <p class="text-lg text-gray-600 mb-6 max-w-xl mx-auto">
+                Accede a nuestro portal de venta de actividades con tu clave para colaborar con el grupo.
+            </p>
+            <button id="open-modal-button" class="px-10 py-4 text-xl font-bold text-gray-900 bg-accent-yellow rounded-full shadow-2xl hover:bg-yellow-600 transition duration-300 transform hover:scale-105">
+                Venta de Actividades
+            </button>
+        </div>
+    </section>
+
+    <footer class="bg-gray-100 border-t border-gray-200 py-8">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
+            
+            <div class="mb-6">
+                <p class="text-base font-semibold text-gray-800 mb-3">Síguenos / Únete a nosotros</p>
+                <div class="flex justify-center space-x-6">
+                    <a id="whatsapp-link" href="#" target="_blank" class="text-gray-600 hover:text-green-500 transition duration-300 transform hover:scale-110" aria-label="Únete al grupo de WhatsApp">
+                        <i class="fab fa-whatsapp text-3xl"></i>
+                    </a>
+                    <a id="facebook-link" href="#" target="_blank" class="text-gray-600 hover:text-blue-600 transition duration-300 transform hover:scale-110" aria-label="Síguenos en Facebook">
+                        <i class="fab fa-facebook-f text-3xl"></i>
+                    </a>
+                    <a id="youtube-link" href="#" target="_blank" class="text-gray-600 hover:text-red-600 transition duration-300 transform hover:scale-110" aria-label="Suscríbete a YouTube">
+                        <i class="fab fa-youtube text-3xl"></i>
+                    </a>
+                    <a id="instagram-link" href="#" target="_blank" class="text-gray-600 hover:text-pink-600 transition duration-300 transform hover:scale-110" aria-label="Síguenos en Instagram">
+                        <i class="fab fa-instagram text-3xl"></i>
+                    </a>
+                    <a id="tiktok-link" href="#" target="_blank" class="text-gray-600 hover:text-gray-900 transition duration-300 transform hover:scale-110" aria-label="Síguenos en TikTok">
+                        <i class="fab fa-tiktok text-3xl"></i>
                     </a>
                 </div>
             </div>
-        </section>
 
-        <section id="liderazgo" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-extrabold mb-12 section-title">Nuestro Liderazgo</h2>
-                
-                <div class="grid grid-cols-1 lg:grid-cols-3 gap-8">
-                    
-                    <div class="lg:col-span-2 carousel-container bg-white border border-gray-200 glow-effect">
-                        
-                        <div id="carousel-track" class="carousel-track">
-                            <div class="carousel-slide flex flex-col justify-start items-center p-4 sm:p-8">
-                                <img id="leader-photo-1" src="about:blank" 
-                                    alt="Foto del Pastor General" 
-                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/000000?text=PASTOR';" 
-                                    class="main-photo-style">
-                                <div class="mt-4 text-center">
-                                    <h4 class="text-2xl sm:text-3xl font-bold accent-blue">Pastor Raúl Pérez</h4>
-                                    <p class="text-lg font-semibold text-gray-700">Líder General</p>
-                                </div>
-                            </div>
-                            
-                            <div class="carousel-slide flex flex-col justify-start items-center p-4 sm:p-8">
-                                <img id="leader-photo-2" src="about:blank" 
-                                    alt="Foto del Líder de Caballeros" 
-                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/000000?text=LIDER';" 
-                                    class="main-photo-style">
-                                <div class="mt-4 text-center">
-                                    <h4 class="text-2xl sm:text-3xl font-bold accent-blue">Hermano Juan Sastre</h4>
-                                    <p class="text-lg font-semibold text-gray-700">Líder de Caballeros</p>
-                                </div>
-                            </div>
-                            
-                            <div class="carousel-slide flex flex-col justify-start items-center p-4 sm:p-8">
-                                <img id="leader-photo-3" src="tesorero.jpg" 
-                                    alt="Foto del Tesorero" 
-                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/000000?text=TESORERO';" 
-                                    class="main-photo-style">
-                                <div class="mt-4 text-center">
-                                    <h4 class="text-2xl sm:text-3xl font-bold accent-blue">Hermano Miguel Ángel</h4>
-                                    <p class="text-lg font-semibold text-gray-700">Tesorero</p>
-                                </div>
-                            </div>
-
-                             <div class="carousel-slide flex flex-col justify-start items-center p-4 sm:p-8">
-                                <img id="leader-photo-4" src="about:blank" 
-                                    alt="Foto del Secretario" 
-                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/000000?text=SECRETARIO';" 
-                                    class="main-photo-style">
-                                <div class="mt-4 text-center">
-                                    <h4 class="text-2xl sm:text-3xl font-bold accent-blue">Hermano David Castro</h4>
-                                    <p class="text-lg font-semibold text-gray-700">Secretario</p>
-                                </div>
-                            </div>
-
-                             <div class="carousel-slide flex flex-col justify-start items-center p-4 sm:p-8">
-                                <img id="leader-photo-5" src="about:blank" 
-                                    alt="Foto del Vocal" 
-                                    onerror="this.onerror=null; this.src='https://placehold.co/600x450/cccccc/000000?text=VOCAL';" 
-                                    class="main-photo-style">
-                                <div class="mt-4 text-center">
-                                    <h4 class="text-2xl sm:text-3xl font-bold accent-blue">Hermano Alberto Gómez</h4>
-                                    <p class="text-lg font-semibold text-gray-700">Vocal de Actividades</p>
-                                </div>
-                            </div>
-
-                        </div>
-
-                        <button onclick="moveCarousel(-1)" class="carousel-button left-4">
-                            &lt;
-                        </button>
-                        <button onclick="moveCarousel(1)" class="carousel-button right-4">
-                            &gt;
-                        </button>
-                    </div>
-
-                    <div class="lg:col-span-1 bg-accent-blue/5 p-6 rounded-xl shadow-lg border border-gray-200">
-                        <h3 class="text-2xl font-bold accent-blue mb-4 border-b pb-2 border-gray-300">Roles Activos</h3>
-                        <div id="liderazgo-list-container" class="space-y-3">
-                            <div class="bg-white text-gray-800 p-3 rounded-lg border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">
-                                <p class="text-sm font-bold text-gray-700">Líder General</p>
-                                <span class="text-base font-semibold truncate accent-blue">Pastor Raúl Pérez</span>
-                            </div>
-                            <div class="bg-white text-gray-800 p-3 rounded-lg border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">
-                                <p class="text-sm font-bold text-gray-700">Líder de Caballeros</p>
-                                <span class="text-base font-semibold truncate accent-blue">Hermano Juan Sastre</span>
-                            </div>
-                            <div class="bg-white text-gray-800 p-3 rounded-lg border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">
-                                <p class="text-sm font-bold text-gray-700">Tesorero</p>
-                                <span class="text-base font-semibold truncate accent-blue">Hermano Miguel Ángel</span>
-                            </div>
-                             <div class="bg-white text-gray-800 p-3 rounded-lg border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">
-                                <p class="text-sm font-bold text-gray-700">Secretario</p>
-                                <span class="text-base font-semibold truncate accent-blue">Hermano David Castro</span>
-                            </div>
-                             <div class="bg-white text-gray-800 p-3 rounded-lg border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">
-                                <p class="text-sm font-bold text-gray-700">Vocal de Actividades</p>
-                                <span class="text-base font-semibold truncate accent-blue">Hermano Alberto Gómez</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="miembros" class="py-16 md:py-24 bg-accent-blue/5 border-t border-b border-gray-300">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-extrabold mb-12 section-title">Miembros Activos</h2>
-                <div class="grid md:grid-cols-3 gap-8">
-                    
-                    <div class="md:col-span-1 bg-white p-6 rounded-xl shadow-lg flex flex-col justify-start items-center text-center glow-effect border-2 border-accent-blue/50">
-                        <div class="photo-container mb-4">
-                            <img id="photo-unidad" src="fortaleza.jpeg" 
-                                 alt="Foto de la unidad del grupo"
-                                 onerror="this.onerror=null; this.src='https://placehold.co/400x300/1e40af/ffffff?text=FOTO+DE+UNIDAD';"
-                                 class="main-photo-style"
-                            >
-                        </div>
-                        
-                        <p class="text-gray-800 text-lg font-semibold">Fortaleza y Unidad en Cristo</p>
-                        <p class="text-sm text-gray-500 mt-1">Nuestra misión y compromiso.</p>
-                    </div>
-
-                    <div class="md:col-span-2 bg-white p-6 rounded-xl shadow-lg border border-gray-200">
-                        <h3 class="text-2xl font-bold accent-blue mb-4">Lista de Caballeros</h3>
-                        <div id="miembros-container" class="grid grid-cols-2 sm:grid-cols-4 gap-3">
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Ricardo V.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano José L.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Carlos M.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Felipe R.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Andrés S.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Daniel T.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Pedro P.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Martín Z.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Luis V.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Samuel O.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Elias A.</div>
-                            <div class="bg-gray-100 text-gray-800 p-2 rounded-lg text-sm truncate border border-gray-300 hover:bg-accent-blue/10 hover:border-accent-blue/50">Hermano Josué B.</div>
-                        </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-        
-        <section id="eventos" class="py-16 md:py-24 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-extrabold mb-12 section-title">Eventos y Actividades</h2>
-                
-                <div class="grid md:grid-cols-3 gap-8">
-                    
-                    <div class="bg-gray-50 p-5 rounded-xl glow-effect border border-gray-200">
-                        <div class="event-photo-container mb-4">
-                            <img id="photo-servicio" src="jesus_salva.jpg" 
-                                alt="Servicio Comunitario" 
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/000000?text=FOTO+SERVICIO+COMUNITARIO';" 
-                                class="main-photo-style">
-                        </div>
-                        <h3 class="text-xl font-bold accent-blue mb-2">Jornada de Servicio Comunitario</h3>
-                        <p class="text-gray-600 text-sm mb-4">Organización y despliegue logístico de ayuda para las familias en la zona.</p>
-                        <a href="https://www.youtube.com/live/uc8N0K1Sx1s?si=ZpfDeG_p_Hw5Eo_4" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 transition duration-200">
-                            Ver Video en YouTube
-                        </a>
-                    </div>
-
-                    
-                    <div class="bg-gray-50 p-5 rounded-xl glow-effect border border-gray-200">
-                         <div class="event-photo-container mb-4">
-                            <img id="photo-conferencia" src="about:blank" 
-                                alt="Conferencia de Liderazgo" 
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/000000?text=FOTO+CONFERENCIA';" 
-                                class="main-photo-style">
-                        </div>
-                        <h3 class="text-xl font-bold accent-blue mb-2">Conferencia de Liderazgo 2025</h3>
-                        <p class="text-gray-600 text-sm mb-4">Capacitación intensiva para todos los siervos y colaboradores de la iglesia.</p>
-                        <a href="https://www.youtube.com/watch?v=ID_VIDEO_2" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 transition duration-200">
-                            Ver Video en YouTube
-                        </a>
-                    </div>
-                    
-                    
-                    <div class="bg-gray-50 p-5 rounded-xl glow-effect border border-gray-200">
-                         <div class="event-photo-container mb-4">
-                            <img id="photo-retiro" src="about:blank" 
-                                alt="Retiro Espiritual" 
-                                onerror="this.onerror=null; this.src='https://placehold.co/400x300/cccccc/000000?text=FOTO+RETIRO';" 
-                                class="main-photo-style">
-                        </div>
-                        <h3 class="text-xl font-bold accent-blue mb-2">Retiro Espiritual Masculino</h3>
-                        <p class="text-gray-600 text-sm mb-4">Tiempo de comunión y renovación de fuerzas para los caballeros.</p>
-                        <a href="https://www.youtube.com/watch?v=ID_VIDEO_3" target="_blank" class="inline-flex items-center justify-center w-full px-4 py-2 border border-transparent text-sm font-medium rounded-lg shadow-sm text-white bg-red-600 hover:bg-red-700 transition duration-200">
-                            Ver Video en YouTube
-                        </a>
-                    </div>
-                </div>
-            </div>
-        </section>
-        
-        <section id="videos" class="py-16 md:py-24 bg-accent-blue/5 border-t border-b border-gray-300">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <h2 class="text-3xl sm:text-4xl font-extrabold mb-12 section-title">Videos Destacados</h2>
-                <div class="grid md:grid-cols-3 gap-8 items-start">
-                    
-                    <div class="md:col-span-2 youtube-iframe-container glow-effect border-2 border-accent-blue/50 order-1">
-                        <iframe id="video-iframe"
-                            src="about:blank" 
-                            title="Video de YouTube" 
-                            allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                            allowfullscreen>
-                        </iframe>
-                         <div id="current-video-title" class="absolute bottom-0 left-0 right-0 bg-accent-blue bg-opacity-90 text-white text-center py-2 text-sm font-medium truncate hidden md:block">
-                            Video Actual: Mensaje Principal
-                         </div>
-                    </div>
-                    
-                    <div class="md:col-span-1 order-2">
-                        <h3 class="text-2xl font-bold accent-blue mb-4">Ver más Videos</h3>
-                        <p class="text-gray-600 mb-4">Selecciona un video de la lista para verlo en la pantalla principal.</p>
-
-                        <div id="video-links-container" class="space-y-3">
-                             
-                             <div class="flex items-center space-x-4 bg-white p-3 rounded-xl shadow border border-gray-200 hover:bg-accent-blue/10 cursor-pointer transition duration-200" 
-                                onclick="loadVideoFromList('27iJgYnDF2s', 'Jornada de Evangelismo en Suba')">
-                                 <div class="flex-shrink-0 w-16 h-12 bg-gray-300 rounded overflow-hidden relative">
-                                    <img src="https://img.youtube.com/vi/27iJgYnDF2s/mqdefault.jpg" alt="Miniatura de video 1" class="w-full h-full object-cover">
-                                     <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold" aria-hidden="true">▶</span>
-                                 </div>
-                                 <div class="flex-grow">
-                                     <p class="text-sm font-semibold text-gray-800 truncate">Jornada de Evangelismo en Suba</p>
-                                     <p class="text-xs text-gray-500">Video 1: Clic para ver</p>
-                                 </div>
-                                 <button class="flex-shrink-0 px-3 py-1 text-xs text-white bg-accent-yellow rounded-full hover:bg-yellow-500 transition">Ver</button>
-                             </div>
-                             
-                             <div class="flex items-center space-x-4 bg-white p-3 rounded-xl shadow border border-gray-200 hover:bg-accent-blue/10 cursor-pointer transition duration-200" 
-                                onclick="loadVideoFromList('qYFq3qN-i3c', 'Conferencia: La Armadura de Dios')">
-                                 <div class="flex-shrink-0 w-16 h-12 bg-gray-300 rounded overflow-hidden relative">
-                                     <img src="https://img.youtube.com/vi/qYFq3qN-i3c/mqdefault.jpg" alt="Miniatura de video 2" class="w-full h-full object-cover">
-                                     <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold" aria-hidden="true">▶</span>
-                                 </div>
-                                 <div class="flex-grow">
-                                     <p class="text-sm font-semibold text-gray-800 truncate">Conferencia: La Armadura de Dios</p>
-                                     <p class="text-xs text-gray-500">Video 2: Clic para ver</p>
-                                 </div>
-                                 <button class="flex-shrink-0 px-3 py-1 text-xs text-white bg-accent-yellow rounded-full hover:bg-yellow-500 transition">Ver</button>
-                             </div>
-                            
-                            </div>
-                    </div>
-                    
-                </div>
-            </div>
-        </section>
-
-        <footer class="bg-gray-100 border-t border-gray-200 mt-16 py-8">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-                <p>&copy; 2025 Grupo de Caballeros. Todos los derechos reservados.</p>
-                <p class="text-xs mt-1">Versión Estática 2.1 (Máxima Responsividad)</p>
-            </div>
-        </footer>
-    </main>
+            <p>&copy; 2025 Grupo de Caballeros. Todos los derechos reservados.</p>
+            <p class="text-xs mt-1">Versión Estática 2.4 (Última actualización: 21 de Octubre)</p>
+        </div>
+    </footer>
 
     <script src="script.js"></script>
 </body>
