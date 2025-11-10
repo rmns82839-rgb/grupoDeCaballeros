@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo de Aseo y Mantenimiento - MMM Suba Rincón</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100..900&family=Montserrat:ital,wght@0,100..900;1,100..900;1,400&display=swap" rel="stylesheet">
+    <link href="styles.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.5/css/all.min.css">
+    
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'accent-blue': 'var(--accent-blue)',
+                        'accent-yellow': 'var(--accent-yellow)',
+                        'light-bg-blue': 'var(--light-bg-blue)',
+                        'aseo-color': '#06b6d4', // Cyan
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    }
+                }
+            }
+        }
+    </script>
+</head>
+<body class="min-h-screen font-sans bg-gray-50">
+
+    <nav class="bg-white shadow-lg p-4">
+        <div class="max-w-7xl mx-auto flex justify-between items-center">
+            <a href="index.html" class="text-xl font-bold text-gray-800"><i class="fas fa-home mr-2"></i> Inicio</a>
+            <span class="text-xl font-bold" style="color: #06b6d4;">Equipo de Aseo</span>
+        </div>
+    </nav>
+
+    <main class="py-16 px-4 sm:px-6 lg:px-8">
+        <div class="max-w-6xl mx-auto bg-white p-8 rounded-xl shadow-2xl border-t-8 border-aseo-color">
+            
+            <div class="text-center mb-12">
+                <img src="fortaleza.jpeg" alt="Equipo de Aseo" class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-aseo-color">
+                <h1 class="text-4xl sm:text-5xl font-serif font-extrabold text-gray-900 mt-4">
+                    Equipo de <span style="color: #06b6d4;">Aseo del Templo</span>
+                </h1>
+                <p class="text-xl text-gray-600 mt-2">
+                    Sirviendo con diligencia para mantener la Casa de Dios en santidad y orden.
+                </p>
+                <a href="#proyectos" class="mt-6 inline-block px-6 py-2 text-sm font-bold text-white rounded-full transition duration-300 transform hover:scale-105 shadow-md" style="background-color: #06b6d4;">
+                    Ver Calendario <i class="fas fa-calendar-alt ml-2"></i>
+                </a>
+            </div>
+
+            <div class="grid md:grid-cols-2 gap-8 text-lg mb-16 border-t pt-8">
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-aseo-color mb-3"><i class="fas fa-broom mr-2"></i> Nuestra Misión</h2>
+                    <p class="text-gray-700">
+                        Proveer un ambiente limpio, ordenado y digno para la adoración y las actividades de la congregación, honrando a Dios en el cuidado de su Casa.
+                    </p>
+                </div>
+                <div>
+                    <h2 class="text-2xl font-serif font-bold text-aseo-color mb-3"><i class="fas fa-clipboard-check mr-2"></i> Visión</h2>
+                    <p class="text-gray-700">
+                        Ser un equipo comprometido y organizado que gestiona los recursos de limpieza de manera eficiente, asegurando la pulcritud constante del templo.
+                    </p>
+                </div>
+            </div>
+
+            <div id="proyectos" class="bg-gray-100 p-6 rounded-xl shadow-inner">
+                <h2 class="text-3xl font-serif font-extrabold text-gray-900 mb-6 text-center border-b pb-4">
+                    <i class="fas fa-tasks mr-2" style="color: #06b6d4;"></i> Tareas y Compromisos
+                </h2>
+                <div class="space-y-6">
+                    <div class="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-aseo-color">
+                        <i class="fas fa-spray-can text-3xl mt-1" style="color: #06b6d4;"></i>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900">Limpieza Profunda</h4>
+                            <p class="text-gray-600">Aseo de pisos, ventanas, baños y áreas comunes los sábados y después de los eventos grandes.</p>
+                        </div>
+                    </div>
+                    <div class="flex items-start space-x-4 p-4 bg-white rounded-lg shadow-md border-l-4 border-aseo-color">
+                        <i class="fas fa-toilet text-3xl mt-1" style="color: #06b6d4;"></i>
+                        <div>
+                            <h4 class="text-xl font-bold text-gray-900">Acondicionamiento Rápido</h4>
+                            <p class="text-gray-600">Revisión y limpieza de baños y pasillos antes y después de cada servicio semanal.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="mt-16 text-center">
+                <h2 class="text-2xl font-serif font-bold text-gray-800 mb-4">¡El Servicio Humilde Honra a Dios!</h2>
+                <p class="text-gray-600 mb-4">Te invitamos a servir con tu mejor esfuerzo en esta área vital para el templo.</p>
+                <p class="text-xl font-bold text-aseo-color">Líder: Hno. Luis García (Aseo)</p>
+            </div>
+            
+        </div>
+    </main>
+
+    <footer class="bg-gray-800 text-white p-4 text-center">
+        <p>&copy; 2025 Iglesia MMM Suba Rincón.</p>
+    </footer>
+    <script src="script.js"></script>
+</body>
+</html>
