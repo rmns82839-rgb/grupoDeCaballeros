@@ -47,6 +47,7 @@
 </head>
 
 <body class="min-h-screen font-sans bg-gray-50">
+    
 
     <div id="password-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[9999] p-4 hidden">
         <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-sm transform transition-all duration-300 scale-100 opacity-100">
@@ -175,13 +176,15 @@
                         <a id="peticiones-nav-link" href="#" target="_blank" class="px-3 py-2 text-sm font-bold text-white bg-green-500 rounded-full shadow-md hover:bg-green-600 transition duration-150 transform hover:scale-105">
                             <i class="fas fa-hand-holding-heart mr-1"></i> Peticiones
                         </a>
-                        
+                       
                     </div>
 
                 </div>
 
                 <div class="lg:hidden flex items-center space-x-3">
-                   
+                    <button id="open-modal-button-mobile" class="px-3 py-1 text-sm font-medium text-gray-900 bg-accent-yellow rounded-full shadow-md hover:bg-yellow-600 transition duration-300">
+                        Ventas
+                    </button>
                     <button id="open-mobile-menu" class="text-gray-800 text-2xl p-1 rounded hover:bg-gray-100 transition">
                         <i class="fas fa-bars"></i>
                     </button>
@@ -637,7 +640,3 @@
 <script src="script.js"></script>
 </body>
 </html>
-
-
-
-
