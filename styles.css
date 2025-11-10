@@ -6,6 +6,9 @@
     --accent-blue: #2A60E3; 
     --accent-yellow: #FFD700; 
     --light-bg-blue: #edf5ff; 
+
+    /* Versión RGB para overlay en CSS puro */
+    --primary-blue-rgb: 28, 63, 167;
 }
 
 /* ========================================================================
@@ -23,194 +26,207 @@
     border-color: var(--accent-blue);
 }
 
-.hover\:bg-accent-blue\/10:hover {
-    background-color: rgba(42, 96, 227, 0.1); 
-}
-
 .bg-accent-blue\/5 {
     background-color: rgba(42, 96, 227, 0.05); 
+}
+
+.border-accent-blue\/20 {
+    border-color: rgba(42, 96, 227, 0.2); 
 }
 
 .border-accent-blue\/50 {
     border-color: rgba(42, 96, 227, 0.5); 
 }
 
-.bg-accent-yellow {
-    background-color: var(--accent-yellow);
-}
-
-/* Estilo para el enlace activo en la navegación */
-.active-link.active {
-    color: var(--accent-blue);
-    font-weight: 700; /* font-bold */
-    border-bottom: 2px solid var(--accent-blue);
-    padding-bottom: 6px;
-}
-
-/* ========================================================================
-   CARRUSEL DE LIDERAZGO
-   ======================================================================== */
-.main-photo-style {
-    width: 150px;
-    height: 150px;
-    object-fit: cover;
-    border-radius: 50%;
-    border: 5px solid var(--accent-yellow);
-}
-
+/* --- ESTILOS MODERNOS PARA EL CARRUSEL DE LIDERAZGO --- */
 .carousel-slide {
-    min-width: 100%;
+    width: 100%; /* Asegura que cada slide ocupe el 100% del contenedor */
+    /* Añadimos un poco más de estilo visual al slide */
+    box-sizing: border-box;
 }
 
-.carousel-button {
-    position: absolute;
+.carousel-nav-btn {
     top: 50%;
     transform: translateY(-50%);
-    background-color: rgba(0, 0, 0, 0.5);
-    color: white;
+    background-color: rgba(255, 255, 255, 0.8);
+    color: #333;
+    padding: 12px 18px;
     border: none;
-    padding: 10px;
-    cursor: pointer;
-    z-index: 10;
     border-radius: 50%;
-    transition: background-color 0.3s;
-}
-
-.carousel-button:hover {
-    background-color: rgba(0, 0, 0, 0.8);
-}
-
-.carousel-dot {
-    display: inline-block;
-    width: 10px;
-    height: 10px;
-    margin: 0 4px;
-    background-color: rgba(0, 0, 0, 0.3);
-    border-radius: 50%;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    transition: background-color 0.3s, transform 0.3s;
+    z-index: 20;
+    transition: all 0.3s ease;
+    opacity: 0; /* Inicialmente ocultos */
 }
 
-.carousel-dot.active {
+/* Mostrar botones al hacer hover sobre el contenedor principal */
+#carousel-container:hover .carousel-nav-btn {
+    opacity: 1;
+}
+
+.carousel-nav-btn:hover {
     background-color: var(--accent-blue);
-    transform: scale(1.2);
-}
-
-/* ========================================================================
-   COMPONENTES GLOBALES
-   ======================================================================== */
-
-/* Estilo de la animación de "shake" para el error de contraseña */
-@keyframes shake {
-    0%, 100% {transform: translateX(0);}
-    20%, 60% {transform: translateX(-5px);}
-    40%, 80% {transform: translateX(5px);}
-}
-
-.animate-shake {
-    animation: shake 0.5s ease-in-out;
-}
-
-/* Estilo del icono de "Play" en la miniatura de video */
-.video-thumbnail-play-icon {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    width: 40px; 
-    height: 40px;
-    background-color: rgba(0, 0, 0, 0.6);
-    border-radius: 50%;
-    display: flex;
-    align-items: center;
-    justify-content: center;
     color: white;
-    font-size: 1.5rem;
-    border: 2px solid white;
-    pointer-events: none; 
-    transition: transform 0.2s, background-color 0.2s;
+    transform: translateY(-50%) scale(1.1);
 }
 
-/* ========================================================================
-   EFECTOS VISUALES
-   ======================================================================== */
+/* Ajuste de posición para que no se pegue a los bordes */
+.carousel-nav-btn.absolute.left-0 {
+    left: -20px;
+}
+
+.carousel-nav-btn.absolute.right-0 {
+    right: -20px;
+}
+/* -------------------------------------------------------- */
+
+
+/* --- ESTILOS PARA EL SCROLL VERTICAL DE VIDEOS (Miniaturas) --- */
+#video-list-container {
+    /* Define la altura máxima para que se active el desplazamiento */
+    max-height: 400px; 
+    overflow-y: scroll; 
+    overflow-x: hidden; 
+    padding-right: 8px;
+}
+
+/* Personalización de la barra de desplazamiento (solo para navegadores basados en WebKit como Chrome y Safari) */
+#video-list-container::-webkit-scrollbar {
+    width: 8px;
+}
+
+#video-list-container::-webkit-scrollbar-thumb {
+    background-color: var(--pink-damas); /* Color de la "palanca" */
+    border-radius: 4px;
+}
+
+#video-list-container::-webkit-scrollbar-track {
+    background-color: #f1f1f1; /* Color del fondo de la barra */
+    border-radius: 4px;
+}
+
+.video-list-item {
+    /* Añadimos estilos para la miniatura y el texto */
+    display: flex;
+    align-items: flex-start;
+    padding: 8px;
+    background-color: #fff;
+    border-radius: 6px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.05);
+    transition: all 0.2s ease;
+    border: 1px solid #e5e7eb;
+}
+
+.video-list-item:hover {
+    background-color: var(--light-bg-blue);
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.video-list-item img {
+    /* Estilo de la miniatura del video */
+    width: 80px; /* Ancho pequeño de la miniatura */
+    height: 45px; /* Altura para relación 16:9 */
+    object-fit: cover;
+    border-radius: 4px;
+    flex-shrink: 0;
+    margin-right: 12px;
+}
+
+.video-list-item .video-info {
+    flex-grow: 1;
+    min-width: 0; /* Permite que el contenido se corte con 'line-clamp' */
+}
+
+.video-list-item .video-title {
+    font-size: 0.875rem; /* text-sm */
+    font-weight: 600; /* font-semibold */
+    color: #1f2937;   /* gray-900 */
+    line-height: 1.2;
+    
+    /* Propiedades para el Truncado de Texto (Clamp) */
+    overflow: hidden;
+    
+    /* Soporte para navegadores basados en WebKit (Chrome, Safari, Edge) */
+    display: -webkit-box;
+    -webkit-box-orient: vertical;
+    -webkit-line-clamp: 2; /* Límite de 2 líneas */
+
+    /* Propiedad Estándar de CSS (Recomendado para el futuro) */
+    line-clamp: 2; /* Límite de 2 líneas */
+    
+    white-space: normal;
+}-------------------------------------------------------- */
+
+
+/* Efecto para el input de contraseña incorrecta */
+.animate-shake {
+    animation: shake 0.5s cubic-bezier(.36,.07,.19,.97) both;
+    transform: translate3d(0, 0, 0);
+}
+@keyframes shake {
+    10%, 90% { transform: translate3d(-1px, 0, 0); }
+    20%, 80% { transform: translate3d(2px, 0, 0); }
+    30%, 50%, 70% { transform: translate3d(-4px, 0, 0); }
+    40%, 60% { transform: translate3d(4px, 0, 0); }
+}
+
+/* Estilos para animaciones de la sección Hero */
+@keyframes fadeInDown {
+    from { opacity: 0; transform: translateY(-20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-down {
+    animation: fadeInDown 1s ease-out 0.2s backwards;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+.animate-fade-in {
+    animation: fadeIn 1s ease-out 0.5s backwards;
+}
+
+@keyframes fadeInUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+.animate-fade-in-up {
+    animation: fadeInUp 1s ease-out 0.8s backwards;
+}
+
+@keyframes bounceOnce {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-5px);
+    }
+}
+
+.animate-bounce-once {
+    animation: bounceOnce 1s ease-in-out 1s 1; /* Corre una sola vez */
+}
+
+/* Efecto de 'Glow' para las Cards */
 .glow-effect {
     transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
 .glow-effect:hover {
     transform: translateY(-5px);
-    box-shadow: 0 15px 20px -5px rgba(0, 0, 0, 0.2), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+    box-shadow: 0 15px 25px -5px rgba(0, 0, 0, 0.25), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
 }
 
-/* ========================================================================
-   VIDEOS (Corregido el scroll)
-   ======================================================================== */
-
-#video-list-scroll-wrapper {
-    /* Altura máxima para mostrar aproximadamente 4 o 5 videos completos */
-    max-height: 400px; 
-    overflow-y: auto; 
-    padding-right: 0.5rem; /* Pequeño padding para que la barra de scroll no se pegue al borde */
-}
-
-/* Estilo para navegadores basados en Webkit (Chrome, Safari) */
-#video-list-scroll-wrapper::-webkit-scrollbar {
-    width: 8px;
-}
-
-#video-list-scroll-wrapper::-webkit-scrollbar-track {
-    background: #f1f1f1;
-    border-radius: 10px;
-}
-
-#video-list-scroll-wrapper::-webkit-scrollbar-thumb {
-    background: #ccc;
-    border-radius: 10px;
-}
-
-#video-list-scroll-wrapper::-webkit-scrollbar-thumb:hover {
-    background: #aaa;
-}
-
-
-.video-list-item {
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    border: 1px solid transparent; 
-}
-
-.video-list-item:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    background-color: rgba(42, 96, 227, 0.08); 
-}
-
-.video-list-item:hover .video-thumbnail-play-icon {
-    transform: translate(-50%, -50%) scale(1.1);
-}
-
-/* Se agregó el ajuste para la relación de aspecto de video de Tailwind CSS */
-.aspect-w-16 {
-    position: relative;
-    padding-bottom: 56.25%; /* 16:9 aspect ratio */
-    height: 0;
-    overflow: hidden;
-}
-
-.aspect-w-16 iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-}
-
-/* ========================================================================
-   ESTILO DE BOTÓN CON IMAGEN DE FONDO Y OVERLAY
-   ======================================================================== */
+/* Estilo del botón de peticiones con fondo de imagen */
 .button-with-image-bg {
-    /* La imagen de fondo para el botón */
-    background-image: url('generaciones.jpg'); /* <<== ASEGÚRATE DE QUE ESTA RUTA ES CORRECTA */
+    /* La imagen debe estar cargada en la carpeta raíz (generaciones.jpg) */
+    background-image: url('generaciones.jpg');
     background-size: cover;
     background-position: center;
     background-repeat: no-repeat;
@@ -228,10 +244,11 @@
     left: 0;
     right: 0;
     bottom: 0;
-    /* Color de superposición: azul primario con opacidad, para un efecto claro y llamativo */
+    /* Color de superposición: un tono de azul principal con opacidad */
     background-color: rgba(var(--primary-blue-rgb), 0.7); /* Azul principal con 70% de opacidad */
     z-index: 0; /* Asegura que el overlay esté debajo del texto */
     transition: background-color 0.3s ease; /* Suave transición al pasar el ratón */
+    border-radius: 0.5rem; /* Hereda el border-radius del contenedor padre */
 }
 
 /* Efecto hover para el overlay */
@@ -239,10 +256,29 @@
     background-color: rgba(var(--primary-blue-rgb), 0.85); /* Se oscurece ligeramente al hacer hover */
 }
 
-/* Ajuste de variables Tailwind si no las tienes en CSS puro */
-/* Esto es solo si no has definido --primary-blue-rgb en otro lugar */
-:root {
-    --primary-blue: #3B82F6; /* Ejemplo de color primario azul */
-    --primary-blue-rgb: 59, 130, 246; /* Versión RGB para el overlay */
-    --accent-yellow: #FACC15; /* Ejemplo de color amarillo */
+/* CLASE PARA BOTONES DE REDES SOCIALES MODERNOS */
+.social-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    /* Añade un ligero escalado en hover para el efecto "moderno" */
+    transform: scale(1);
+    transition: all 0.3s ease;
+}
+.social-btn:hover {
+    transform: scale(1.15);
+}
+
+/* --- Mejoras para Botones y Efectos --- */
+.glow-effect {
+    /* Brillo inicial sutil en el color amarillo (#F59E0B) */
+    box-shadow: 0 0 8px rgba(245, 158, 11, 0.7), 0 0 15px rgba(245, 158, 11, 0.4);
+}
+
+.glow-effect:hover {
+    /* Brillo más intenso al pasar el mouse */
+    box-shadow: 0 0 10px rgba(245, 158, 11, 0.9), 0 0 20px rgba(245, 158, 11, 0.6);
 }
