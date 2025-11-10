@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Grupo de Caballeros MMM Suba Rincón</title>
+    <title>IGLESIA MMM SUBA RINCÓN</title>
     
     <script src="https://cdn.tailwindcss.com"></script>
     
@@ -11,9 +11,42 @@
     
     <link href="styles.css" rel="stylesheet">
     
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v6.5.1/css/all.css">
+    <script>
+        tailwind.config = {
+            
+            theme: {
+                extend: {
+                    colors: {
+                        
+                        'accent-blue': 'var(--accent-blue)',
+                        'accent-yellow': 'var(--accent-yellow)',
+                        'light-bg-blue': 'var(--light-bg-blue)',
+                        
+                        // Colores de Grupos
+                        'caballeros-color': '#1E40AF', // Azul Oscuro
+                        'pink-damas': '#ec4899', // Rosa
+                        'jovenes-color': '#10b981', // Verde Brillante
+                        'ninos-color': '#F59E0B', // Naranja
+                        
+                        // Colores de Equipos
+                        'ujieres-color': '#9333ea', // Morado
+                        'evangelismo-color': '#DC2626', // Rojo
+                        'actividades-color': '#f97316', // Naranja
+                        'aseo-color': '#06b6d4',      // Cyan
+                        'multimedia-color': '#374151' // Gris oscuro
+                    },
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        serif: ['Montserrat', 'serif'],
+                    }
+                }
+            }
+        } // <--- Cierre de script corregido
+    </script>
 </head>
-<body class="min-h-screen">
+
+<body class="min-h-screen font-sans bg-gray-50">
 
     <div id="password-modal" class="fixed inset-0 bg-black bg-opacity-70 flex items-center justify-center z-[9999] p-4 hidden">
         <div class="bg-white p-6 sm:p-8 rounded-xl shadow-2xl w-full max-w-sm transform transition-all duration-300 scale-100 opacity-100">
@@ -27,389 +60,585 @@
         </div>
     </div>
     
-    <nav id="navbar" class="bg-white sticky top-0 z-50 shadow-md transition-all duration-300">
+    <div id="mobile-menu-modal" class="fixed inset-0 bg-black bg-opacity-70 z-[9998] hidden">
+        <div id="mobile-menu-drawer" class="fixed top-0 right-0 w-64 h-full bg-white shadow-2xl transform translate-x-full transition-transform duration-300 ease-out p-6">
+            <div class="flex justify-between items-center mb-6 border-b pb-3">
+                <span class="text-xl font-bold text-gray-800">Menú Principal</span>
+                <button id="close-mobile-menu" class="text-gray-500 hover:text-gray-900 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <nav class="flex flex-col space-y-4">
+                <a href="#inicio" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Inicio</a>
+                <a href="#servicios" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Servicios</a>
+                <a href="#ministerios" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Ministerios</a> 
+                <a href="#mision" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Misión</a>
+                <a href="#articulos" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Artículos</a>
+                <a href="#videos" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Videos</a>
+                <a href="#foro" class="mobile-nav-link text-lg text-gray-700 hover:text-accent-blue font-semibold transition">Foro</a>
+                
+                <hr class="my-2 border-gray-200">
+                <span class="text-sm font-bold text-gray-500 uppercase">Grupos & Equipos</span>
+
+                <a href="caballeros.html" class="block text-gray-700 hover:text-caballeros-color transition"><i class="fas fa-shield-alt mr-2 text-caballeros-color"></i> Caballeros</a>
+                <a href="damas.html" class="block text-gray-700 hover:text-pink-damas transition"><i class="fas fa-ring mr-2 text-pink-damas"></i> Damas</a>
+                <a href="jovenes.html" class="block text-gray-700 hover:text-jovenes-color transition"><i class="fas fa-bolt mr-2 text-jovenes-color"></i> Jóvenes</a>
+                <a href="ujieres.html" class="block text-gray-700 hover:text-ujieres-color transition"><i class="fas fa-handshake mr-2 text-ujieres-color"></i> Ujieres</a>
+                <a href="evangelismo.html" class="block text-gray-700 hover:text-evangelismo-color transition"><i class="fas fa-cross mr-2 text-evangelismo-color"></i> Evangelismo</a>
+
+                <hr class="my-2 border-gray-200">
+                <a id="peticiones-nav-link-mobile" href="#" target="_blank" class="text-lg font-bold text-white bg-green-500 hover:bg-green-600 px-4 py-2 rounded-lg text-center transition duration-150 shadow-md">
+                    <i class="fas fa-hand-holding-heart mr-2"></i> Peticiones
+                </a>
+                <button id="open-modal-button-mobile-alt" class="px-4 py-2 text-lg font-bold text-gray-900 bg-accent-yellow rounded-lg shadow-md hover:bg-yellow-600 transition duration-300">
+                    <i class="fas fa-store mr-2"></i> Ventas
+                </button>
+            </nav>
+        </div>
+    </div>
+    
+    <nav id="navbar" class="bg-white sticky top-0 z-50 shadow-lg transition-all duration-300">
         <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex justify-between items-center h-16">
+            <div class="flex justify-between items-center h-20">
                 <a href="#inicio" class="flex items-center flex-shrink-0">
-                    <img class="h-8 w-auto" src="logo.png" alt="Logo Caballeros Suba Rincón">
-                    <span class="text-lg sm:text-2xl font-black text-gray-800 tracking-wider ml-2 truncate">
-                        <span class="hidden md:inline">GRUPO DE CABALLEROS</span> 
-                        <span class="md:hidden text-base">CABALLEROS</span> 
-                        <span class="accent-blue">MMM SUBA RINCÒN</span>
+                    <img class="h-10 w-auto" src="logo.png" alt="Logo Iglesia Suba Rincón">
+                    <span class="text-xl sm:text-3xl font-serif font-black text-gray-800 tracking-wider ml-2 truncate">
+                        IGLESIA <span class="accent-blue">MMM SUBA RINCÓN</span>
                     </span>
                 </a>
                 
-                <div class="hidden md:flex md:space-x-3 lg:space-x-4 items-center">
-                    <a href="#inicio" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="inicio">Inicio</a>
-                    <a href="#liderazgo" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="liderazgo">Liderazgo</a>
-                    <a href="#miembros" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="miembros">Miembros</a>
-                    <a href="#eventos" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="eventos">Eventos</a>
-                    <a href="#articulos" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="articulos">Artículos</a>
-                    <a href="#videos" class="text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="videos">Videos</a>
-                    </div>
-      </nav>
+                <div class="hidden lg:flex lg:space-x-4 items-center h-full">
+                    
+                    <a href="#inicio" class="nav-link text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="inicio">Inicio</a>
+                    <a href="#servicios" class="nav-link text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="servicios">Servicios</a>
+                    <a href="#ministerios" class="nav-link text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="ministerios">Ministerios</a> 
+                    <a href="#videos" class="nav-link text-gray-600 hover:text-gray-900 font-medium px-3 py-2 rounded-lg transition duration-150 active-link" data-section="videos">Videos</a>
 
+                    <div class="w-px h-8 bg-gray-300 mx-2"></div>
+                    
+                    <div class="flex items-center space-x-2">
+                        
+                        <div class="relative inline-block text-left" id="mas-dropdown-container">
+                            <button type="button" class="inline-flex justify-center items-center px-3 py-2 text-sm font-bold text-white bg-accent-blue rounded-full shadow-md hover:bg-blue-800 transition duration-150 transform hover:scale-105 focus:outline-none" id="mas-dropdown-button" aria-expanded="false" aria-haspopup="true">
+                                <i class="fas fa-plus mr-1"></i> Más
+                                <i class="fas fa-chevron-down ml-2 -mr-1 text-xs"></i>
+                            </button>
+
+                            <div class="origin-top-right absolute right-0 mt-2 w-56 rounded-lg shadow-xl bg-white ring-1 ring-black ring-opacity-5 focus:outline-none hidden" role="menu" aria-orientation="vertical" aria-labelledby="mas-dropdown-button" id="mas-dropdown-menu">
+                                <div class="py-1" role="none">
+                                    <span class="block px-4 py-2 text-xs text-gray-500 uppercase font-bold">Información</span>
+                                    <a href="#mision" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-accent-blue font-semibold transition" role="menuitem"><i class="fas fa-flag mr-2"></i> Misión</a>
+                                    <a href="#articulos" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-accent-blue font-semibold transition" role="menuitem"><i class="fas fa-file-alt mr-2"></i> Artículos</a>
+                                    <a href="#foro" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-accent-blue font-semibold transition" role="menuitem"><i class="fas fa-comments mr-2"></i> Foro</a>
+                                    <hr class="my-1">
+<span class="block px-4 py-2 text-xs text-gray-500 uppercase font-bold">Grupos y Equipos</span>
+
+<a href="caballeros.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-caballeros-color font-semibold transition" role="menuitem">
+    <i class="fas fa-shield-alt mr-2" style="color: #1E40AF;"></i> Caballeros
+</a>
+<a href="damas.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-pink-damas font-semibold transition" role="menuitem">
+    <i class="fas fa-ring mr-2" style="color: #ec4899;"></i> Damas
+</a>
+<a href="jovenes.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-jovenes-color font-semibold transition" role="menuitem">
+    <i class="fas fa-bolt mr-2" style="color: #10b981;"></i> Jóvenes
+</a>
+<a href="ninos.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-ninos-color font-semibold transition" role="menuitem">
+    <i class="fas fa-graduation-cap mr-2" style="color: #F59E0B;"></i> Niños
+</a>
+
+<a href="ujieres.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-ujieres-color font-semibold transition border-t mt-1 pt-2" role="menuitem">
+    <i class="fas fa-handshake mr-2" style="color: #9333ea;"></i> Ujieres
+</a>
+
+<a href="alabanza.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-alabanza-color font-semibold transition" role="menuitem">
+    <i class="fas fa-music mr-2" style="color: #E53E3E;"></i> Alabanza
+</a>
+
+<a href="evangelismo.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-evangelismo-color font-semibold transition" role="menuitem">
+    <i class="fas fa-cross mr-2" style="color: #3182CE;"></i> Evangelismo
+</a>
+
+<a href="actividades_ventas.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-actividades-color font-semibold transition" role="menuitem">
+    <i class="fas fa-bullhorn mr-2" style="color: #F6AD55;"></i> Actividades
+</a>
+
+<a href="aseo.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-aseo-color font-semibold transition" role="menuitem">
+    <i class="fas fa-broom mr-2" style="color: #00B5AD;"></i> Aseo
+</a>
+
+<a href="multimedia.html" target="_self" class="block px-4 py-2 text-sm text-gray-700 hover:bg-light-bg-blue hover:text-multimedia-color font-semibold transition border-t mt-1 pt-2" role="menuitem">
+    <i class="fas fa-video mr-2" style="color: #4A5568;"></i> Multimedia
+</a>
+                                </div>
+                            </div>
+                        </div>
+                        <a id="peticiones-nav-link" href="#" target="_blank" class="px-3 py-2 text-sm font-bold text-white bg-green-500 rounded-full shadow-md hover:bg-green-600 transition duration-150 transform hover:scale-105">
+                            <i class="fas fa-hand-holding-heart mr-1"></i> Peticiones
+                        </a>
+                        <button id="open-modal-button-desktop" class="px-3 py-2 text-sm font-bold text-gray-900 bg-accent-yellow rounded-full shadow-md hover:bg-yellow-600 transition duration-150 transform hover:scale-105">
+                            Ventas
+                        </button>
+                    </div>
+
+                </div>
+
+                <div class="lg:hidden flex items-center space-x-3">
+                    <button id="open-modal-button-mobile" class="px-3 py-1 text-sm font-medium text-gray-900 bg-accent-yellow rounded-full shadow-md hover:bg-yellow-600 transition duration-300">
+                        Ventas
+                    </button>
+                    <button id="open-mobile-menu" class="text-gray-800 text-2xl p-1 rounded hover:bg-gray-100 transition">
+                        <i class="fas fa-bars"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </nav>
+    
     <main>
-        <section id="inicio" class="relative min-h-[50vh] flex items-center justify-center text-white p-6" 
-            style="background-image: url('generaciones.jpg'); background-size: cover; background-position: center;">
-            
-            <div class="absolute inset-0 bg-black bg-opacity-60"></div> 
-            
-            <div class="relative text-center max-w-4xl mx-auto">
-                <img src="logo.png" alt="Logo" class="w-20 sm:w-28 h-auto mx-auto mb-4 opacity-90">
-                <h1 class="text-3xl sm:text-5xl lg:text-6xl font-extrabold mb-4 leading-tight" 
-                    style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);">
-                    GRUPO DE CABALLEROS <span class="text-accent-yellow">MMM SUBA RINCÓN</span>
-                </h1>
-                <p class="text-base sm:text-xl font-medium mb-8 max-w-2xl mx-auto" 
-                    style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);">
-                    Hombres de Fe, Fortaleza y Visión para el Reino de Dios.
-                </p>
-                <a href="#liderazgo" class="inline-block px-8 py-3 text-lg font-bold rounded-full shadow-2xl transition duration-300 transform hover:scale-105 
-                    bg-accent-yellow text-gray-900 border-2 border-accent-yellow hover:shadow-xl">
-                    Conoce el Liderazgo
-                </a>
-            </div>
-        </section>
 
-        <section id="mision" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="lg:grid lg:grid-cols-3 lg:gap-8 items-center">
-                    <div class="lg:col-span-1 mb-8 lg:mb-0">
-                        <h2 class="text-3xl font-extrabold text-gray-900">Nuestra Misión</h2>
-                    </div>
-                    <div class="lg:col-span-2 space-y-4 text-lg text-gray-700">
-                        <p>Somos un grupo de hombres comprometidos con el servicio a Dios, la iglesia y la comunidad. Nuestra misión es edificar a cada caballero para que sea un líder íntegro en su hogar, trabajo y congregación.</p>
-                        <p class="font-semibold">Buscamos reflejar los valores de fe, fortaleza, unidad y servicio.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="liderazgo" class="py-16 bg-light-bg-blue">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-                <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Guías Espirituales</span>
-                <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Nuestro Liderazgo</h2>
-                
-                <div class="relative mt-8">
-                    <div id="carousel-container" class="relative overflow-hidden rounded-2xl shadow-2xl bg-white mx-auto max-w-4xl">
-                        
-                        <div id="carousel-slider" class="flex transition-transform duration-500 ease-in-out">
-                            <div class="carousel-slide flex-shrink-0 w-full p-8 md:flex md:items-center">
-                                <img id="leader-photo-0" src="tesorero.jpg" alt="Foto del Tesorero (Provisional)" class="main-photo-style mx-auto md:ml-0 md:mr-8 mb-4 md:mb-0">
-                                <div class="text-left">
-                                    <h3 id="leader-name-0" class="text-3xl font-bold accent-blue mb-2">Hno. [Nombre Tesorero]</h3>
-                                    <p id="leader-role-0" class="text-xl font-semibold text-gray-800 mb-4">Tesorero del Grupo</p>
-                                    <p id="leader-text-0" class="text-gray-600 italic">"Sirviendo con fidelidad y transparencia para que la obra avance. El servicio a Dios es nuestra mayor recompensa."</p>
-                                </div>
-                            </div>
-                            
-                            <div class="carousel-slide flex-shrink-0 w-full p-8 md:flex md:items-center">
-                                <img id="leader-photo-1" src="generaciones.jpg" alt="Foto de Liderazgo (Ejemplo)" class="main-photo-style mx-auto md:ml-0 md:mr-8 mb-4 md:mb-0">
-                                <div class="text-left">
-                                    <h3 id="leader-name-1" class="text-3xl font-bold accent-blue mb-2">Pastor [Raúl]</h3>
-                                    <p id="leader-role-1" class="text-xl font-semibold text-gray-800 mb-4">Pastor y Guía Espiritual</p>
-                                    <p id="leader-text-1" class="text-gray-600 italic">"Guiando a los hombres a ser pilares de fe en sus hogares y en la iglesia, edificando una generación fuerte."</p>
-                                </div>
-                            </div>
-                            
-                            <div class="carousel-slide flex-shrink-0 w-full p-8 md:flex md:items-center">
-                                <img id="leader-photo-2" src="fortaleza.jpeg" alt="Foto de Liderazgo (Ejemplo)" class="main-photo-style mx-auto md:ml-0 md:mr-8 mb-4 md:mb-0">
-                                <div class="text-left">
-                                    <h3 id="leader-name-2" class="text-3xl font-bold accent-blue mb-2">Hno. [Nombre Juan]</h3>
-                                    <p id="leader-role-2" class="text-xl font-semibold text-gray-800 mb-4">Coordinador de Evangelismo</p>
-                                    <p id="leader-text-2" class="text-gray-600 italic">"Llevando la palabra de salvación a cada rincón de Suba. Somos llamados a ser pescadores de hombres."</p>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <button id="carousel-prev" class="carousel-button left-4">&#10094;</button>
-                        <button id="carousel-next" class="carousel-button right-4">&#10095;</button>
-                        <div id="carousel-dots" class="absolute bottom-4 left-0 right-0 flex justify-center space-x-2">
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="miembros" class="pt-16 pb-12 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Comunidad</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Nuestros Valientes Caballeros</h2>
-                    <p class="text-lg text-gray-600 mt-4 max-w-2xl mx-auto">Conoce a los hombres de fe que conforman el Grupo de Caballeros MMM Suba Rincón.</p>
-                </div>
-                
-                <div id="members-grid" class="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-6 gap-6 mt-8">
-                    </div>
-                
-                <div class="text-center mt-10 flex flex-wrap justify-center gap-4">
-                    <button id="show-more-members" class="px-8 py-3 text-lg font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-105 
-                        bg-accent-blue text-white border-2 border-accent-blue hover:shadow-xl">
-                        Mostrar más Caballeros
-                    </button>
-                    <button id="show-less-members" class="px-8 py-3 text-lg font-bold rounded-full shadow-lg transition duration-300 transform hover:scale-105 
-                        bg-gray-400 text-white border-2 border-gray-400 hover:bg-gray-500 hover:shadow-xl hidden">
-                        Ver menos
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <section id="eventos" class="py-16 bg-light-bg-blue">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Fechas Importantes</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Próximos Eventos</h2>
-                </div>
-
-                <div id="events-container" class="space-y-8">
-                    </div>
-            </div>
-        </section>
-
-        <section id="articulos" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Estudio de la Palabra</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Artículos Destacados</h2>
-                </div>
-                
-                <div id="articulos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                    
-                    <div class="bg-light-bg-blue rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect">
-                        <img src="fortaleza.jpeg" alt="Imagen del Artículo 1" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">La Fortaleza del Hombre Cristiano</h3>
-                            <p class="text-gray-600 text-sm mb-4 flex-grow">Un análisis bíblico sobre cómo edificar una vida espiritual sólida, resistiendo las pruebas y manteniendo la fe inquebrantable.</p>
-                            <div class="mt-auto text-center">
-                                <a href="https://www.indubiblia.org/antiguo-testamento-1/genesis-1" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-light-bg-blue rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect">
-                        <img src="generaciones.jpg" alt="Imagen del Artículo 2" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">El Legado de Fe a la Siguiente Generación</h3>
-                            <p class="text-gray-600 text-sm mb-4 flex-grow">La importancia de modelar un carácter piadoso para que nuestros hijos y jóvenes sigan el camino del Señor con convicción.</p>
-                            <div class="mt-auto text-center">
-                                <a href="#" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más</a>
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="bg-light-bg-blue rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect">
-                        <img src="jesus_salva.jpg" alt="Imagen del Artículo 3" class="w-full h-48 object-cover">
-                        <div class="p-6 flex-grow flex flex-col">
-                            <h3 class="text-xl font-bold text-gray-900 mb-3">El Llamado al Servicio</h3>
-                            <p class="text-gray-600 text-sm mb-4 flex-grow">Reflexión sobre el mandato de Jesús de servir al prójimo y cómo el hombre de Dios debe ser un siervo en su entorno.</p>
-                            <div class="mt-auto text-center">
-                                <a href="#" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <section id="videos" class="py-16 bg-light-bg-blue">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Multimedia</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Videos y Predicaciones</h2>
-                </div>
-                
-                <div class="lg:grid lg:grid-cols-3 lg:gap-8">
-                    <div class="lg:col-span-2 mb-8 lg:mb-0 bg-white rounded-xl shadow-xl overflow-hidden">
-                        <div class="aspect-w-16 aspect-h-9 w-full"> 
-                            <iframe id="video-iframe" class="w-full h-full" 
-                                src="https://www.youtube.com/embed/QGGU1f0SV9c?rel=0" 
-                                frameborder="0" 
-                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
-                                allowfullscreen>
-                            </iframe>
-                        </div>
-                        <div class="p-4 border-t">
-                            <p id="current-video-title" class="text-lg font-bold text-gray-900">Video Actual: Mensaje Principal del Culto</p>
-                        </div>
-                    </div>
-
-                    <div class="lg:col-span-1">
-                        <div class="bg-white rounded-xl shadow-xl p-4">
-                            <h3 class="text-xl font-bold text-gray-900 mb-4 border-b pb-2">Más Videos</h3>
-                            
-                            <div id="video-list-scroll-wrapper"> 
-                                <div id="video-list" class="space-y-3">
-
-                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
-                                         data-video-id="qYFq3qN-i3c" 
-                                         data-video-title="Conferencia: La Armadura de Dios">
-                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
-                                            <img src="https://img.youtube.com/vi/qYFq3qN-i3c/mqdefault.jpg" alt="Miniatura de video 2" class="w-full h-full object-cover">
-                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="text-sm font-semibold text-gray-800 truncate">Conferencia: La Armadura de Dios</p>
-                                            <p class="text-xs text-gray-500">Video 2: Clic para ver</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
-                                         data-video-id="MvODk9QMer4" 
-                                         data-video-title="Culto en Vivo - Especial">
-                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
-                                            <img src="https://img.youtube.com/vi/MvODk9QMer4/mqdefault.jpg" alt="Miniatura de Culto en Vivo" class="w-full h-full object-cover">
-                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="text-sm font-semibold text-gray-800 truncate">Culto en Vivo - Especial</p>
-                                            <p class="text-xs text-gray-500">Video 3: Clic para ver</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
-                                         data-video-id="f-t80kK5KAE" 
-                                         data-video-title="Testimonio de Caballero">
-                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
-                                            <img src="https://img.youtube.com/vi/f-t80kK5KAE/mqdefault.jpg" alt="Miniatura de video 4" class="w-full h-full object-cover">
-                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="text-sm font-semibold text-gray-800 truncate">Testimonio de Caballero</p>
-                                            <p class="text-xs text-gray-500">Video 4: Clic para ver</p>
-                                        </div>
-                                    </div>
-                                    
-                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
-                                         data-video-id="eD2871sN-sI" 
-                                         data-video-title="Alabanza y Adoración">
-                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
-                                            <img src="https://img.youtube.com/vi/eD2871sN-sI/mqdefault.jpg" alt="Miniatura de video 5" class="w-full h-full object-cover">
-                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="text-sm font-semibold text-gray-800 truncate">Alabanza y Adoración</p>
-                                            <p class="text-xs text-gray-500">Video 5: Clic para ver</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
-                                         data-video-id="K_M3bJ3nU4Y" 
-                                         data-video-title="Estudio Bíblico: Liderazgo">
-                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
-                                            <img src="https://img.youtube.com/vi/K_M3bJ3nU4Y/mqdefault.jpg" alt="Miniatura de video 6" class="w-full h-full object-cover">
-                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="text-sm font-semibold text-gray-800 truncate">Estudio Bíblico: Liderazgo</p>
-                                            <p class="text-xs text-gray-500">Video 6: Clic para ver</p>
-                                        </div>
-                                    </div>
-
-                                    <div class="video-list-item flex items-center p-2 rounded-lg cursor-pointer transition duration-150 hover:bg-accent-blue/5"
-                                         data-video-id="qYFq3qN-i3c" 
-                                         data-video-title="Estudio Bíblico: Profecía">
-                                        <div class="flex-shrink-0 w-16 h-12 mr-3 rounded overflow-hidden relative">
-                                            <img src="https://img.youtube.com/vi/qYFq3qN-i3c/mqdefault.jpg" alt="Miniatura de video 7" class="w-full h-full object-cover">
-                                            <span class="absolute inset-0 flex items-center justify-center text-white bg-black bg-opacity-30 text-xs font-bold video-thumbnail-play-icon" aria-hidden="true">▶</span>
-                                        </div>
-                                        <div class="flex-grow">
-                                            <p class="text-sm font-semibold text-gray-800 truncate">Estudio Bíblico: Profecía</p>
-                                            <p class="text-xs text-gray-500">Video 7: Clic para ver</p>
-                                        </div>
-                                    </div>
-                                    
-                                </div>
-                            </div>
-                        </div>
-                </div>
-            </div>
-        </section>
-
-      <div class="max-w-md mx-auto mt-12 px-4"> 
-    <a href="https://forms.gle/s53rJag1vfQ6rL2A6" target="_blank"
-       class="relative block w-full text-center py-2 px-3 text-lg font-bold rounded-lg overflow-hidden
-              text-white shadow-lg transition duration-300 transform hover:scale-[1.01]
-              border-2 border-transparent hover:border-accent-yellow button-with-image-bg">
-        <span class="relative z-10">Peticiones / Oraciones</span>
-    </a>
-</div>      
-
-    </main>
-
-<section id="foro" class="py-16 bg-white">
-            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-                <div class="text-center mb-12">
-                    <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Comunidad Interactiva</span>
-                    <h2 class="text-3xl sm:text-4xl font-extrabold text-gray-900 mt-2">Foro de Opiniones</h2>
-                    <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
-                        Comparte tus comentarios, opiniones y peticiones generales con la comunidad.
-                    </p>
-                </div>
-
-                <div id="utterances-container" class="mt-8 p-6 bg-light-bg-blue rounded-xl shadow-lg">
-                    
-                    <script src="https://utteranc.es/client.js"
-                        repo="rmns82839-rgb/caballeros-suba-rincon-foro"
-                        issue-term="pathname"
-                        theme="github-light"
-                        crossorigin="anonymous"
-                        async>
-                    </script>
-                    
-                </div>
-            </div>
-        </section>
-
-    </main>
-
-
-    <section id="venta-flotante" class="py-12 bg-white md:py-16">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-            <h2 class="text-2xl font-extrabold text-gray-900 mb-4">¡Apoya nuestras Actividades!</h2>
-            <p class="text-lg text-gray-600 mb-6 max-w-xl mx-auto">
-                Accede a nuestro portal de venta de actividades con tu clave para colaborar con el grupo.
+       <section id="inicio" class="relative min-h-[85vh] flex items-center justify-center text-white p-6" 
+        style="background-image: url('generaciones.jpg'); background-size: cover; background-position: center;">
+        
+        <div class="absolute inset-0 bg-black bg-opacity-70"></div> 
+        
+        <div class="relative text-center max-w-4xl mx-auto py-20"> 
+            <img src="logo.png" alt="Logo" class="w-24 sm:w-32 h-auto mx-auto mb-4 opacity-90 animate-fade-in-down">
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-serif font-extrabold mb-4 leading-tight animate-fade-in" 
+                style="text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.9);">
+                IGLESIA <span class="text-accent-yellow">MMM SUBA RINCÓN</span>
+            </h1>
+            <p class="text-base sm:text-xl font-medium mb-8 max-w-2xl mx-auto animate-fade-in-up" 
+                style="text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.9);">
+                Unidos en la Fe, sirviendo a Dios y a la Comunidad de Suba Rincón.
             </p>
-            <button id="open-modal-button" class="px-10 py-4 text-xl font-bold text-gray-900 bg-accent-yellow rounded-full shadow-2xl hover:bg-yellow-600 transition duration-300 transform hover:scale-105">
-                Venta de Actividades
-            </button>
+            <a href="#servicios" class="inline-block px-8 py-3 text-lg font-bold rounded-full shadow-2xl transition duration-300 transform hover:scale-105 
+                bg-accent-yellow text-gray-900 border-2 border-accent-yellow hover:shadow-xl animate-bounce-once">
+                Conoce Nuestros Servicios <i class="fas fa-calendar-alt ml-2"></i>
+            </a>
+        </div>
+    </section>
+    
+    <section id="servicios" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto text-center mb-12">
+            <span class="text-sm font-semibold uppercase tracking-wider accent-blue">Nuestros Horarios</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">
+                Servicios <span class="text-accent-yellow">Semanales</span>
+            </h2>
+        </div>
+        <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <div class="bg-light-bg-blue rounded-xl shadow-lg border-t-4 border-accent-blue hover:shadow-xl transition duration-300 overflow-hidden">
+                <img src="generaciones.jpg" alt="Escuela Dominical" class="w-full h-24 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fas fa-sun text-2xl text-accent-blue"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Escuela Dominical</h3>
+                    </div>
+                    <p class="text-gray-700 font-semibold">Domingos</p>
+                    <p class="text-3xl font-extrabold text-accent-blue mt-1">9:00 AM</p>
+                </div>
+            </div>
+
+            <div class="bg-light-bg-blue rounded-xl shadow-lg border-t-4 border-pink-damas hover:shadow-xl transition duration-300 overflow-hidden">
+                <img src="fortaleza.jpeg" alt="Culto de Oración" class="w-full h-24 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fas fa-hands-praying text-2xl text-pink-damas"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Culto de Oración</h3>
+                    </div>
+                    <p class="text-gray-700 font-semibold">Martes</p>
+                    <p class="text-3xl font-extrabold text-pink-damas mt-1">7:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="bg-light-bg-blue rounded-xl shadow-lg border-t-4 border-jovenes-color hover:shadow-xl transition duration-300 overflow-hidden">
+                <img src="jesus_salva.jpg" alt="Enseñanza Bíblica" class="w-full h-24 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fas fa-book-open text-2xl text-jovenes-color"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Enseñanza Bíblica</h3>
+                    </div>
+                    <p class="text-gray-700 font-semibold">Jueves</p>
+                    <p class="text-3xl font-extrabold text-jovenes-color mt-1">7:00 PM</p>
+                </div>
+            </div>
+            
+            <div class="bg-light-bg-blue rounded-xl shadow-lg border-t-4 border-accent-yellow hover:shadow-xl transition duration-300 overflow-hidden">
+                <img src="tesorero.jpg" alt="Culto de Alabanza" class="w-full h-24 object-cover">
+                <div class="p-6">
+                    <div class="flex items-center space-x-3 mb-3">
+                        <i class="fas fa-music text-2xl text-accent-yellow"></i>
+                        <h3 class="text-xl font-bold text-gray-900">Culto de Alabanza</h3>
+                    </div>
+                    <p class="text-gray-700 font-semibold">Sábados</p>
+                    <p class="text-3xl font-extrabold text-accent-yellow mt-1">7:00 PM</p>
+                </div>
+            </div>
+        </div>
+    </section>
+        
+    <section id="ministerios" class="py-16 bg-light-bg-blue px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto">
+            <div class="text-center mb-12">
+                <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">
+                    Nuestros <span class="accent-blue">Ministerios</span> y Equipos
+                </h2>
+                <p class="text-lg text-gray-600 mt-4">
+                    Encuentra tu lugar de servicio y crecimiento en nuestra iglesia.
+                </p>
+            </div>
+
+            <h3 class="text-2xl font-serif font-bold text-gray-800 border-l-4 border-accent-blue pl-4 mb-6">
+                <i class="fas fa-users-line mr-2 text-accent-blue"></i> Grupos de Crecimiento
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+
+                <a href="caballeros.html" class="group block p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-caballeros-color">
+                    <div class="text-center">
+                        <img src="generaciones.jpg" alt="Grupo de Caballeros" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-caballeros-color group-hover:border-accent-yellow transition duration-300">
+                        <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-caballeros-color">Caballeros</h4>
+                        <p class="text-sm text-gray-600">Líderes de fe, familia y sociedad.</p>
+                    </div>
+                </a>
+
+                <a href="damas.html" class="group block p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-pink-damas">
+                    <div class="text-center">
+                        <img src="generaciones.jpg" alt="Grupo de Damas" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-pink-damas group-hover:border-accent-yellow transition duration-300">
+                        <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-pink-damas">Damas</h4>
+                        <p class="text-sm text-gray-600">Mujeres virtuosas y pilares del hogar.</p>
+                    </div>
+                </a>
+
+                <a href="jovenes.html" class="group block p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-jovenes-color">
+                    <div class="text-center">
+                        <img src="generaciones.jpg" alt="Grupo de Jóvenes y Adolescentes" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-jovenes-color group-hover:border-accent-yellow transition duration-300">
+                        <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-jovenes-color">Jóvenes y Adol.</h4>
+                        <p class="text-sm text-gray-600">Generación apasionada y con propósito.</p>
+                    </div>
+                </a>
+
+                <a href="ninos.html" class="group block p-6 bg-white rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-ninos-color">
+                    <div class="text-center">
+                        <img src="fortaleza.jpeg" alt="Grupo de Niños" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-ninos-color group-hover:border-accent-yellow transition duration-300">
+                        <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-ninos-color">Niños</h4>
+                        <p class="text-sm text-gray-600">Sembrando la Palabra en el futuro.</p>
+                    </div>
+                </a>
+
+            </div>
+
+            <h3 class="text-2xl font-serif font-bold text-gray-800 border-l-4 border-actividades-color pl-4 mb-6">
+                <i class="fas fa-hands-helping mr-2 text-actividades-color"></i> Equipos de Servicio
+            </h3>
+            <div class="grid grid-cols-2 md:grid-cols-2 lg:grid-cols-4 gap-6">
+            
+            <a href="ujieres.html" class="group block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-ujieres-color">
+                <div class="text-center">
+                    <img src="fortaleza.jpeg" alt="Equipo de Ujieres" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-ujieres-color group-hover:border-accent-blue transition duration-300">
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-ujieres-color">Ujieres</h4>
+                    <p class="text-sm text-gray-600">Atención y orden en cada servicio.</p>
+                </div>
+            </a>
+
+            <a href="alabanza.html" class="group block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-accent-yellow">
+                <div class="text-center">
+                    <img src="jesus_salva.jpg" alt="Equipo de Alabanza" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-accent-yellow group-hover:border-accent-blue transition duration-300">
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-accent-yellow">Alabanza</h4>
+                    <p class="text-sm text-gray-600">Liderando a la congregación en adoración.</p>
+                </div>
+            </a>
+
+            <a href="evangelismo.html" class="group block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-evangelismo-color">
+                <div class="text-center">
+                    <img src="tesorero.jpg" alt="Equipo de Evangelismo" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-evangelismo-color group-hover:border-accent-blue transition duration-300">
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-evangelismo-color">Evangelismo</h4>
+                    <p class="text-sm text-gray-600">Llevando el mensaje de salvación.</p>
+                </div>
+            </a>
+
+            <a href="actividades_ventas.html" class="group block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-actividades-color">
+                <div class="text-center">
+                    <img src="fortaleza.jpeg" alt="Equipo de Actividades" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-actividades-color group-hover:border-accent-blue transition duration-300">
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-actividades-color">Actividades/Ventas</h4>
+                    <p class="text-sm text-gray-600">Apoyo económico a través de ventas.</p>
+                </div>
+            </a>
+
+            <a href="aseo.html" class="group block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-aseo-color">
+                <div class="text-center">
+                    <img src="jesus_salva.jpg" alt="Equipo de Aseo" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-aseo-color group-hover:border-accent-blue transition duration-300">
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-aseo-color">Aseo del Templo</h4>
+                    <p class="text-sm text-gray-600">Mantenimiento y limpieza del templo.</p>
+                </div>
+            </a>
+
+            <a href="multimedia.html" class="group block p-6 bg-gray-100 rounded-xl shadow-lg hover:shadow-2xl transition duration-300 transform hover:-translate-y-1 border-b-4 border-multimedia-color">
+                <div class="text-center">
+                    <img src="tesorero.jpg" alt="Equipo de Multimedia" class="w-20 h-20 object-cover rounded-full mx-auto mb-3 border-4 border-multimedia-color group-hover:border-accent-blue transition duration-300">
+                    <h4 class="text-xl font-serif font-bold text-gray-900 mb-1 group-hover:text-multimedia-color">Multimedia</h4>
+                    <p class="text-sm text-gray-600">Sonido, proyección y transmisión.</p>
+                </div>
+            </a>
+            
+            <div class="hidden md:block"></div> 
+            <div class="hidden lg:block"></div>
+
+        </div>
+
+    </div>
+</section>
+
+    <section id="mision" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="max-w-7xl mx-auto lg:grid lg:grid-cols-3 lg:gap-8 items-center">
+            <div class="lg:col-span-1 mb-8 lg:mb-0">
+                <h2 class="text-3xl font-serif font-extrabold text-gray-900 border-l-4 border-accent-blue pl-4">Nuestra Misión</h2>
+            </div>
+            <div class="lg:col-span-2 space-y-4 text-lg text-gray-700">
+                <p>Somos la iglesia del Movimiento Misionero Mundial en Suba Rincón, comprometidos con la Gran Comisión. Nuestra misión es predicar el evangelio, discipular a los creyentes y servir a la comunidad con amor y fe.</p>
+                <p class="font-bold text-accent-blue">Familia, Fe y Evangelización son nuestros pilares.</p>
+            </div>
         </div>
     </section>
 
-    <footer class="bg-gray-100 border-t border-gray-200 py-8">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-gray-500">
-            
-            <div class="mb-6">
-                <p class="text-base font-semibold text-gray-800 mb-3">Síguenos / Únete a nosotros</p>
-                <div class="flex justify-center space-x-6">
-                    <a id="whatsapp-link" href="#" target="_blank" class="text-gray-600 hover:text-green-500 transition duration-300 transform hover:scale-110" aria-label="Únete al grupo de WhatsApp">
-                        <i class="fab fa-whatsapp text-3xl"></i>
-                    </a>
-                    <a id="facebook-link" href="#" target="_blank" class="text-gray-600 hover:text-blue-600 transition duration-300 transform hover:scale-110" aria-label="Síguenos en Facebook">
-                        <i class="fab fa-facebook-f text-3xl"></i>
-                    </a>
-                    <a id="youtube-link" href="#" target="_blank" class="text-gray-600 hover:text-red-600 transition duration-300 transform hover:scale-110" aria-label="Suscríbete a YouTube">
-                        <i class="fab fa-youtube text-3xl"></i>
-                    </a>
-                    <a id="instagram-link" href="#" target="_blank" class="text-gray-600 hover:text-pink-600 transition duration-300 transform hover:scale-110" aria-label="Síguenos en Instagram">
-                        <i class="fab fa-instagram text-3xl"></i>
-                    </a>
-                    <a id="tiktok-link" href="#" target="_blank" class="text-gray-600 hover:text-gray-900 transition duration-300 transform hover:scale-110" aria-label="Síguenos en TikTok">
-                        <i class="fab fa-tiktok text-3xl"></i>
-                    </a>
+    <section id="liderazgo" class="py-16 bg-light-bg-blue px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Guías Espirituales</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">Liderazgo General de la Iglesia</h2>
+        </div>
+        
+        <div id="carousel-container" class="relative max-w-4xl mx-auto group">
+            <div id="carousel-wrapper" class="overflow-hidden rounded-xl shadow-2xl">
+                <div id="carousel-slider" class="flex transition-transform duration-700 ease-in-out">
+                    <div class="min-w-full bg-white p-8 text-center">
+                        <img src="fortaleza.jpeg" alt="Líder Ejemplo 1" class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-accent-yellow">
+                        <h4 class="text-2xl font-serif font-bold text-gray-900">Pastor Principal Nombre Apellido</h4>
+                        <p class="text-accent-blue font-semibold mb-2">Pastor General</p>
+                        <p class="text-gray-600 max-w-sm mx-auto">Dirigiendo la visión y el crecimiento espiritual de la congregación con sabiduría bíblica.</p>
+                    </div>
+                    <div class="min-w-full bg-white p-8 text-center">
+                        <img src="jesus_salva.jpg" alt="Líder Ejemplo 2" class="w-32 h-32 object-cover rounded-full mx-auto mb-4 border-4 border-pink-damas">
+                        <h4 class="text-2xl font-serif font-bold text-gray-900">Diácono o Líder de Zona</h4>
+                        <p class="text-pink-damas font-semibold mb-2">Líder de Apoyo</p>
+                        <p class="text-gray-600 max-w-sm mx-auto">Enfocado en la administración y el bienestar de los ministerios internos.</p>
+                    </div>
+                    </div>
+            </div>
+
+            <button id="carousel-prev" class="carousel-nav-btn absolute left-0 top-1/2 -translate-y-1/2 p-3 bg-white/70 rounded-full shadow-lg text-gray-800 hover:bg-white transition opacity-0 group-hover:opacity-100" aria-label="Anterior">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button id="carousel-next" class="carousel-nav-btn absolute right-0 top-1/2 -translate-y-1/2 p-3 bg-white/70 rounded-full shadow-lg text-gray-800 hover:bg-white transition opacity-0 group-hover:opacity-100" aria-label="Siguiente">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+
+            <div id="carousel-dots" class="flex justify-center mt-6 space-x-2">
+                </div>
+        </div>
+    </section>
+    
+    <section id="eventos" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Fechas Importantes</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">Próximos Eventos</h2>
+        </div>
+        <div id="events-container" class="space-y-8 max-w-4xl mx-auto">
+            <div class="bg-light-bg-blue p-6 rounded-xl shadow-lg border-l-4 border-accent-blue flex items-center space-x-4 hover:shadow-xl transition duration-300">
+                <div class="flex-shrink-0 text-center">
+                    <p class="text-4xl font-bold accent-blue">25</p>
+                    <p class="text-sm font-semibold text-gray-600">DIC</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Cena de Navidad Familiar</h3>
+                    <p class="text-gray-700 text-sm">Celebra el nacimiento de Jesús con toda la familia de la iglesia. **7:00 PM**</p>
+                </div>
+            </div>
+            <div class="bg-light-bg-blue p-6 rounded-xl shadow-lg border-l-4 border-actividades-color flex items-center space-x-4 hover:shadow-xl transition duration-300">
+                <div class="flex-shrink-0 text-center">
+                    <p class="text-4xl font-bold text-actividades-color">31</p>
+                    <p class="text-sm font-semibold text-gray-600">DIC</p>
+                </div>
+                <div>
+                    <h3 class="text-xl font-serif font-bold text-gray-900">Culto de Fin de Año y Vigilia</h3>
+                    <p class="text-gray-700 text-sm">Despide el año en oración y alabanza. **10:00 PM - 12:00 AM**</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="articulos" class="py-16 bg-light-bg-blue px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Estudio de la Palabra</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">Artículos Destacados</h2>
+        </div>
+        
+        <div id="articulos-container" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-7xl mx-auto">
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect border-t-4 border-accent-blue">
+                <img src="fortaleza.jpeg" alt="Imagen del Artículo 1" class="w-full h-48 object-cover">
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">La Fortaleza del Cristiano</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Un análisis bíblico sobre cómo edificar una vida espiritual sólida, resistiendo las pruebas y manteniendo la fe inquebrantable.</p>
+                    <div class="mt-auto text-center">
+                        <a href="https://www.indubiblia.org/antiguo-testamento-1/genesis-1" target="_blank" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-accent-blue rounded-full hover:bg-blue-800 transition shadow-md">Leer más <i class="fas fa-book-open ml-1"></i></a>
+                    </div>
                 </div>
             </div>
 
-            <p>&copy; 2025 Grupo de Caballeros. Todos los derechos reservados.</p>
-            <p class="text-xs mt-1">Versión Estática 2.4 (Última actualización: 21 de Octubre)</p>
-        </div>
-    </footer>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect border-t-4 border-pink-damas">
+                <img src="generaciones.jpg" alt="Imagen del Artículo 2" class="w-full h-48 object-cover">
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">El Legado de Fe a la Familia</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">La importancia de modelar un carácter piadoso para que nuestros hijos y jóvenes sigan el camino del Señor con convicción.</p>
+                    <div class="mt-auto text-center">
+                        <a href="#" target="_blank" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-pink-damas rounded-full hover:bg-pink-600 transition shadow-md">Leer más <i class="fas fa-book-open ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
 
-    <script src="script.js"></script>
+            <div class="bg-white rounded-xl shadow-lg overflow-hidden flex flex-col glow-effect border-t-4 border-evangelismo-color">
+                <img src="jesus_salva.jpg" alt="Imagen del Artículo 3" class="w-full h-48 object-cover">
+                <div class="p-6 flex-grow flex flex-col">
+                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-3">El Llamado al Servicio Misionero</h3>
+                    <p class="text-gray-600 text-sm mb-4 flex-grow">Reflexión sobre el mandato de Jesús de servir al prójimo y cómo la iglesia debe ser un faro de evangelización.</p>
+                    <div class="mt-auto text-center">
+                        <a href="#" target="_blank" class="inline-block px-6 py-2 text-sm font-semibold text-white bg-evangelismo-color rounded-full hover:bg-red-700 transition shadow-md">Leer más <i class="fas fa-book-open ml-1"></i></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="videos" class="py-16 bg-white px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Multimedia</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">Videos y Predicaciones</h2>
+        </div>
+        
+        <div class="lg:grid lg:grid-cols-3 lg:gap-8 max-w-7xl mx-auto">
+            <div class="lg:col-span-2 mb-8 lg:mb-0 bg-light-bg-blue rounded-xl shadow-xl overflow-hidden border-t-4 border-accent-blue">
+                
+                <div class="aspect-video w-full"> 
+                    <iframe id="video-iframe" class="w-full h-full" 
+                        src="https://www.youtube.com/embed/a0GK42_Foso?rel=0&modestbranding=1" 
+                        frameborder="0" 
+                        allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+                <div class="p-4 border-t">
+                    <p id="current-video-title" class="text-lg font-bold text-gray-900"><i class="fas fa-video mr-2 text-red-600"></i> Video Actual: Predicación: El Poder de la Oración</p>
+                </div>
+            </div>
+
+            <div class="lg:col-span-1">
+                <div class="bg-white rounded-xl shadow-xl p-4 border-t-4 border-pink-damas">
+                    <h3 class="text-xl font-serif font-bold text-gray-900 mb-4 border-b pb-2"><i class="fas fa-list-ul mr-2 text-pink-damas"></i> Lista de Predicaciones</h3>
+                    <div id="video-list-container" class="space-y-3"> 
+                        <div id="video-list" class="flex flex-col space-y-3">
+                            <div class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-gray-100 transition" data-video-id="a0GK42_Foso" data-title="Predicación: El Poder de la Oración">
+                                <img src="fortaleza.jpeg" alt="Miniatura" class="w-12 h-12 object-cover rounded">
+                                <span class="text-sm font-medium text-gray-700 truncate">El Poder de la Oración</span>
+                            </div>
+                            <div class="flex items-center space-x-3 cursor-pointer p-2 rounded hover:bg-gray-100 transition" data-video-id="VIDEO_ID_2" data-title="Alabanza: Un Nuevo Canto">
+                                <img src="tesorero.jpg" alt="Miniatura" class="w-12 h-12 object-cover rounded">
+                                <span class="text-sm font-medium text-gray-700 truncate">Alabanza: Un Nuevo Canto</span>
+                            </div>
+                        </div>
+                        <h4 class="text-center text-gray-500 pt-4 text-sm">... más videos disponibles al hacer scroll ...</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section id="foro" class="py-16 bg-light-bg-blue px-4 sm:px-6 lg:px-8">
+        <div class="text-center mb-12">
+            <span class="text-sm font-semibold uppercase tracking-wider text-accent-blue">Comunidad Interactiva</span>
+            <h2 class="text-3xl sm:text-4xl font-serif font-extrabold text-gray-900 mt-2">Foro de Opiniones</h2>
+            <p class="mt-4 text-lg text-gray-600 max-w-2xl mx-auto">
+                Comparte tus comentarios, opiniones y peticiones generales con la comunidad.
+            </p>
+        </div>
+
+        <div id="utterances-container" class="mt-8 p-6 bg-white rounded-xl shadow-lg max-w-7xl mx-auto">
+            <script src="https://utteranc.es/client.js"
+                repo="rmns82839-rgb/caballeros-suba-rincon-foro"
+                issue-term="pathname"
+                theme="github-light"
+                crossorigin="anonymous"
+                async>
+            </script>
+        </div>
+    </section>
+
+    
+
+    <div class="max-w-md mx-auto my-12 px-4"> 
+        <a id="peticiones-link-main" href="#" target="_blank"
+            class="relative block w-full text-center py-3 px-4 text-xl font-bold rounded-lg overflow-hidden
+                    text-white shadow-xl transition duration-300 transform hover:scale-[1.02]
+                    border-2 border-green-500 bg-green-500 hover:bg-green-600 button-with-image-bg">
+            <span class="relative z-10"><i class="fas fa-praying-hands mr-2"></i> Envía tu Petición de Oración</span>
+        </a>
+    </div>      
+
+    </main>
+
+<footer class="bg-gray-800 text-white py-12">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+        
+        <div class="mb-8">
+            <p class="text-2xl font-serif font-bold text-accent-yellow mb-5">Conéctate con Nosotros</p>
+            
+            <div class="flex justify-center space-x-4 flex-wrap gap-y-4">
+                
+                <a id="whatsapp-link" href="#" target="_blank" 
+                    class="social-btn flex items-center justify-center w-12 h-12 rounded-full 
+                           bg-white text-green-500 hover:bg-green-500 hover:text-white 
+                           transition duration-300 shadow-lg hover:scale-115" 
+                    aria-label="Únete al grupo de WhatsApp">
+                    <i class="fab fa-whatsapp text-2xl"></i>
+                </a>
+
+                <a id="facebook-link" href="#" target="_blank" 
+                    class="social-btn flex items-center justify-center w-12 h-12 rounded-full 
+                           bg-white text-blue-600 hover:bg-blue-600 hover:text-white 
+                           transition duration-300 shadow-lg hover:scale-115" 
+                    aria-label="Síguenos en Facebook">
+                    <i class="fab fa-facebook-f text-2xl"></i>
+                </a>
+                
+                <a id="youtube-link" href="#" target="_blank" 
+                    class="social-btn flex items-center justify-center w-12 h-12 rounded-full 
+                           bg-white text-red-600 hover:bg-red-600 hover:text-white 
+                           transition duration-300 shadow-lg hover:scale-115" 
+                    aria-label="Suscríbete a YouTube">
+                    <i class="fab fa-youtube text-2xl"></i>
+                </a>
+                
+                <a id="instagram-link" href="#" target="_blank" 
+                    class="social-btn flex items-center justify-center w-12 h-12 rounded-full 
+                           bg-white text-pink-500 hover:bg-pink-500 hover:text-white 
+                           transition duration-300 shadow-lg hover:scale-115" 
+                    aria-label="Síguenos en Instagram">
+                    <i class="fab fa-instagram text-2xl"></i>
+                </a>
+                
+                <a id="tiktok-link" href="#" target="_blank" 
+                    class="social-btn flex items-center justify-center w-12 h-12 rounded-full 
+                           bg-white text-black hover:bg-black hover:text-white 
+                           transition duration-300 shadow-lg hover:scale-115" 
+                    aria-label="Síguenos en TikTok">
+                    <i class="fab fa-tiktok text-2xl"></i>
+                </a>
+                
+            </div>
+            </div>
+
+        <p class="text-gray-400 border-t border-gray-700 pt-6">&copy; 2025 Iglesia MMM Suba Rincón. Todos los derechos reservados.</p>
+        <p class="text-xs mt-1 text-gray-500">Versión Estática 4.0 (Página Maestra) | Código y Diseño by [Tu Nombre]</p>
+    </div>
+</footer>
+
+<script src="script.js"></script>
 </body>
 </html>
-
-
-
-
